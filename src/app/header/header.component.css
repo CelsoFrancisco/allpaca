@@ -13,10 +13,7 @@
   top: 0;
 
   z-index: 1000;
-
-  /*
-   * Animação mais lenta e suave.
-   */
+ 
   transition:
     transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -40,10 +37,7 @@
 
   width: 100%;
 
-  /*
-   * Mantemos uma altura grande no desktop,
-   * mas sem forçar a imagem a ficar achatada.
-   */
+ 
   height: 400px;
 
   margin: 0;
@@ -73,19 +67,7 @@
   background-image:
     url("/assets/allpaca/icons/banner.png");
 
-  /*
-   * ALTERAÇÃO IMPORTANTE:
-   *
-   * "100% 100%" deformava a imagem porque obrigava
-   * largura e altura a ocuparem exatamente o tamanho
-   * do elemento.
-   *
-   * "cover" mantém a proporção original da imagem.
-   *
-   * Se a proporção do banner for um pouco diferente
-   * da área disponível, uma pequena parte poderá ser
-   * cortada nas laterais, mas a imagem não será achatada.
-   */
+
   background-size: cover;
 
   background-position: center center;

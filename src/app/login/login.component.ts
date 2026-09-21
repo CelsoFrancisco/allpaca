@@ -59,10 +59,7 @@ export class LoginComponent {
 
   login(): void {
 
-    /*
-     * Evita múltiplos cliques
-     * enquanto o login está acontecendo.
-     */
+    
 
     if (this.carregando) {
 
@@ -141,30 +138,19 @@ export class LoginComponent {
         this.carregando = false;
 
 
-        /*
-         * Salva o JWT.
-         */
-
+        
         localStorage.setItem(
           'token',
           resposta.token
         );
 
 
-        /*
-         * Atualiza o nome do usuário
-         * no AuthService.
-         */
 
         this.authService.atualizarUsuario(
           resposta.nome
         );
 
 
-        /*
-         * Depois do login,
-         * vai para os produtos.
-         */
 
         this.router.navigate(
           ['/produtos']
@@ -178,15 +164,7 @@ export class LoginComponent {
         this.carregando = false;
 
 
-        /*
-         * Mostra a mensagem enviada
-         * pelo backend.
-         *
-         * Exemplo:
-         *
-         * "Senha inválida"
-         */
-
+       
         this.mensagemErro =
           erro.error?.erro ||
           'Erro ao realizar login.';

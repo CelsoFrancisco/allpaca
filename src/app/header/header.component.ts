@@ -25,52 +25,26 @@ export class HeaderComponent implements OnInit {
   nomeUsuario = 'Visitante';
 
 
-  /*
-   * =========================================
-   * CONTROLE DO HEADER NO SCROLL
-   * =========================================
-   */
-
   headerEscondido = false;
 
 
-  /*
-   * Última posição do scroll.
-   */
   private ultimaPosicaoScroll = 0;
 
 
-  /*
-   * Direção atual do scroll.
-   *
-   * 'baixo' = descendo
-   * 'cima' = subindo
-   */
+ 
   private direcaoScroll: 'baixo' | 'cima' | null = null;
 
 
-  /*
-   * Quantidade de pixels acumulados
-   * no movimento atual.
-   */
+
   private distanciaScroll = 0;
 
 
-  /*
-   * Quantos pixels precisamos rolar
-   * para esconder o header.
-   *
-   * Aumente esse número se quiser
-   * que ele fique ainda mais estável.
-   */
+
   private readonly distanciaParaEsconder = 280;
 
 
-  /*
-   * Quantos pixels precisamos subir
-   * para mostrar novamente.
-   */
-  private readonly distanciaParaMostrar = 1200;
+
+  private readonly distanciaParaMostrar = 1100;
 
 
   constructor(
@@ -114,13 +88,7 @@ export class HeaderComponent implements OnInit {
       window.scrollY;
 
 
-    /*
-     * =========================================
-     * TOPO DA PÁGINA
-     * =========================================
-     *
-     * No topo o header sempre aparece.
-     */
+ 
 
     if (posicaoAtual <= 0) {
 
@@ -161,10 +129,7 @@ export class HeaderComponent implements OnInit {
     if (rolandoParaBaixo) {
 
 
-      /*
-       * Se mudou de direção,
-       * começamos uma nova contagem.
-       */
+    
 
       if (this.direcaoScroll !== 'baixo') {
 
@@ -175,18 +140,14 @@ export class HeaderComponent implements OnInit {
       }
 
 
-      /*
-       * Soma a distância percorrida.
-       */
+     
 
       this.distanciaScroll +=
         posicaoAtual -
         this.ultimaPosicaoScroll;
 
 
-      /*
-       * Só esconde depois de 80px.
-       */
+ 
 
       if (
         this.distanciaScroll >=
@@ -209,10 +170,7 @@ export class HeaderComponent implements OnInit {
     else if (rolandoParaCima) {
 
 
-      /*
-       * Se mudou de direção,
-       * começamos novamente.
-       */
+    
 
       if (this.direcaoScroll !== 'cima') {
 
@@ -223,19 +181,14 @@ export class HeaderComponent implements OnInit {
       }
 
 
-      /*
-       * Soma a distância que subimos.
-       */
+    
 
       this.distanciaScroll +=
         this.ultimaPosicaoScroll -
         posicaoAtual;
 
 
-      /*
-       * Depois de subir apenas 10px,
-       * o header aparece.
-       */
+
 
       if (
         this.distanciaScroll >=

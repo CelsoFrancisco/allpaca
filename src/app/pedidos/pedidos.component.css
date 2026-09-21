@@ -336,7 +336,7 @@
 }
 
 
-/* Remove marcador padrão */
+
 
 .order-card-summary::-webkit-details-marker {
   display: none;

@@ -1,63 +1,771 @@
-.main-header {    
-    padding: 10px 0px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 40px;
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.main-header {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 1000;
+
+  /*
+   * Animação mais lenta e suave.
+   */
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.linkjuniorvendas{
-    text-decoration: none;
+
+
+/* =========================================================
+   HEADER ESCONDIDO
+   ========================================================= */
+
+.main-header.header-hidden {
+  transform: translateY(-100%);
+}
+
+
+/* =========================================================
+   HERO / BANNER
+   ========================================================= */
+
+.allpaca-hero {
+  position: relative;
+
+  width: 100%;
+
+  /*
+   * Mantemos uma altura grande no desktop,
+   * mas sem forçar a imagem a ficar achatada.
+   */
+  height: 400px;
+
+  margin: 0;
+  padding: 0;
+
+  overflow: hidden;
+
+  border: none;
+
+  background:
+    var(--allpaca-sky-bottom);
+}
+
+
+/* =========================================================
+   BANNER
+   ========================================================= */
+
+.hero-background {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-image:
+    url("/assets/allpaca/icons/banner.png");
+
+  /*
+   * ALTERAÇÃO IMPORTANTE:
+   *
+   * "100% 100%" deformava a imagem porque obrigava
+   * largura e altura a ocuparem exatamente o tamanho
+   * do elemento.
+   *
+   * "cover" mantém a proporção original da imagem.
+   *
+   * Se a proporção do banner for um pouco diferente
+   * da área disponível, uma pequena parte poderá ser
+   * cortada nas laterais, mas a imagem não será achatada.
+   */
+  background-size: cover;
+
+  background-position: center center;
+
+  background-repeat: no-repeat;
+
+  image-rendering: pixelated;
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+   MASCOTE
+   ========================================================= */
+
+.hero-alpaca-container {
+  position: absolute;
+
+  /*
+   * Posição aprovada anteriormente.
+   */
+  left: 20%;
+
+  bottom: 25px;
+
+  z-index: 5;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   IMAGEM DA ALPACA
+   ========================================================= */
+
+.hero-alpaca {
+  display: block;
+
+  width: 350px;
+
+  height: 350px;
+
+  object-fit: contain;
+
+  image-rendering: pixelated;
+
+  filter:
+    drop-shadow(
+      6px 6px 0 var(--allpaca-coal-dark)
+    );
+
+  transform-origin: center bottom;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+/* =========================================================
+   ALPACA NORMAL
+   ========================================================= */
+
+.hero-alpaca-normal {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   ALPACA FELIZ
+   ========================================================= */
+
+.hero-alpaca-feliz {
+  position: absolute;
+
+  left: 0;
+
+  bottom: 0;
+
+  opacity: 0;
+}
+
+
+/* =========================================================
+   TROCA NORMAL → FELIZ
+   ========================================================= */
+
+.hero-alpaca-container:hover .hero-alpaca-normal {
+  opacity: 0;
+}
+
+
+.hero-alpaca-container:hover .hero-alpaca-feliz {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   PULO DA ALPACA
+   ========================================================= */
+
+.hero-alpaca-container:hover .hero-alpaca {
+  animation:
+    alpacaJump 0.65s ease-out;
+}
+
+
+@keyframes alpacaJump {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(-18px);
+  }
+
+  40% {
+    transform: translateY(-32px);
+  }
+
+  60% {
+    transform: translateY(-20px);
+  }
+
+  80% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 
 }
 
-.main-header__title {    
-    font-size: 80px;
-    letter-spacing: -1.5px;    
+
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+
+.header-navigation {
+  width: 100%;
+
+  min-height: 64px;
+
+  margin: 0;
+
+  padding: 0;
+
+  background:
+    var(--allpaca-coal-dark);
+
+  border-bottom:
+    4px solid var(--allpaca-coal);
+
+  box-shadow:
+    0 4px 0 var(--allpaca-coal);
 }
 
-.main-header__title--blue {
-    color: var(--blue);
-    color: blue;
-    font-size:60px;
+
+.navigation-content {
+  width: 100%;
+
+  min-height: 64px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 8px 20px;
+
+  box-sizing: border-box;
 }
 
-.main-header__title--orange {
-    color: var(--orange);
-    color: orange;
-    font-size:60px;
+
+/* =========================================================
+   NAVEGAÇÃO PRINCIPAL
+   ========================================================= */
+
+.navigation-main {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-left: 20px;
+
+  flex: 1;
+
+  min-width: 0;
 }
 
-.main-header__menu ul {
-    display: flex;
-    justify-content: flex-end;
+
+/* =========================================================
+   ITENS
+   ========================================================= */
+
+.navigation-item {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  min-height: 42px;
+
+  padding: 6px 10px;
+
+  box-sizing: border-box;
+
+  color:
+    var(--allpaca-snow);
+
+  text-decoration: none;
+
+  font-family:
+    "Trebuchet MS",
+    Arial,
+    sans-serif;
+
+  font-size: 15px;
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  border:
+    2px solid transparent;
+
+  background:
+    transparent;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    background-color 0.12s ease,
+    transform 0.12s ease,
+    border-color 0.12s ease;
 }
 
-.main-header__menu a {
-    padding: 10px 10px;
-    color: var(--gray);
-    font-weight: 400;
-    font-size: 22px;
-    text-decoration: none;
-    transition: all .3s ease-in-out;
+
+.navigation-item:hover {
+  background:
+    var(--allpaca-stone-dark);
+
+  border-color:
+    var(--allpaca-stone);
+
+  transform:
+    translateY(-2px);
 }
 
-.main-header__menu a:hover {
-    background-color: var(--blue);
-    color: #fff;
+
+/* =========================================================
+   ÍCONES
+   ========================================================= */
+
+.navigation-icon {
+  width: 28px;
+
+  height: 28px;
+
+  object-fit: contain;
+
+  image-rendering: pixelated;
+
+  flex-shrink: 0;
 }
 
-.container-menu {
-    display: flex;
+
+/* =========================================================
+   PESQUISA
+   ========================================================= */
+
+.navigation-search {
+  width: auto;
+
+  min-width: 250px;
+
+  max-width: none;
+
+  flex: 1;
+
+  margin-left: 4px;
+}
+
+
+.navigation-search app-barra-pesquisa {
+  display: block;
+
+  width: 100%;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   CONTA
+   ========================================================= */
+
+.navigation-account {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-left: 20px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   USUÁRIO
+   ========================================================= */
+
+.user-info {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  min-height: 42px;
+
+  padding: 6px 10px;
+
+  box-sizing: border-box;
+
+  color:
+    var(--allpaca-snow);
+
+  font-family:
+    "Trebuchet MS",
+    Arial,
+    sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   CARRINHO
+   ========================================================= */
+
+.cart-navigation {
+  position: relative;
+}
+
+
+.cart-icon-container {
+  position: relative;
+
+  width: 28px;
+
+  height: 28px;
+
+  flex-shrink: 0;
+}
+
+
+.cart-badge {
+  position: absolute;
+
+  top: -8px;
+
+  right: -9px;
+
+  min-width: 19px;
+
+  height: 19px;
+
+  padding: 0 4px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    var(--allpaca-gold);
+
+  color:
+    var(--allpaca-coal-dark);
+
+  border:
+    2px solid var(--allpaca-coal-dark);
+
+  font-family:
+    "Trebuchet MS",
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  line-height: 1;
+
+  box-shadow:
+    2px 2px 0 var(--allpaca-coal);
+}
+
+
+/* =========================================================
+   LOGIN / LOGOUT
+   ========================================================= */
+
+.navigation-login,
+.navigation-logout {
+  font-family:
+    "Trebuchet MS",
+    Arial,
+    sans-serif;
+}
+
+
+/* =========================================================
+   ATÉ 1200PX
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  .navigation-content {
+    padding-left: 12px;
+
+    padding-right: 12px;
+  }
+
+
+  .navigation-main {
+    margin-left: 10px;
+
+    gap: 8px;
+  }
+
+
+  .navigation-search {
+    min-width: 200px;
+  }
+
+
+  .navigation-account {
+    margin-left: 12px;
+  }
+
+
+  .navigation-item {
+    padding: 6px 8px;
+
+    font-size: 14px;
+  }
+
+
+  .user-info {
+    padding-left: 6px;
+
+    padding-right: 6px;
+  }
+
+
+  .hero-alpaca {
+    width: 320px;
+
+    height: 320px;
+  }
+
+
+  .hero-alpaca-container {
+    left: 18%;
+
+    bottom: 22px;
+  }
+
+}
+
+
+/* =========================================================
+   ATÉ 1000PX
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+  .allpaca-hero {
+    height: 300px;
+  }
+
+
+  .hero-alpaca-container {
+    left: 17%;
+
+    bottom: 18px;
+  }
+
+
+  .hero-alpaca {
+    width: 270px;
+
+    height: 270px;
+  }
+
+
+  .navigation-content {
+    flex-wrap: wrap;
+
+    gap: 6px;
+  }
+
+
+  .navigation-main {
+    margin-left: 0;
+  }
+
+
+  .navigation-search {
+    min-width: 150px;
+  }
+
+
+  .navigation-account {
+    gap: 4px;
+
+    margin-left: 8px;
+  }
+
+
+  .user-info {
+    font-size: 13px;
+  }
+
+}
+
+
+/* =========================================================
+   ATÉ 780PX
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .allpaca-hero {
+    height: 230px;
+  }
+
+
+  .hero-alpaca-container {
+    left: 15%;
+
+    bottom: 12px;
+  }
+
+
+  .hero-alpaca {
+    width: 210px;
+
+    height: 210px;
+  }
+
+
+  .navigation-content {
     flex-direction: column;
-    row-gap: 20px;
-    flex: 1;
+
+    align-items: stretch;
+
+    padding: 8px;
+  }
+
+
+  .navigation-main {
+    width: 100%;
+
+    margin-left: 0;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    flex: none;
+  }
+
+
+  .navigation-search {
+    width: 100%;
+
+    min-width: 0;
+
+    max-width: none;
+
+    flex: none;
+
+    margin-left: 0;
+  }
+
+
+  .navigation-account {
+    width: 100%;
+
+    justify-content: center;
+
+    margin-left: 0;
+
+    flex-wrap: wrap;
+  }
+
 }
 
-.badge-carrinho {
-    background-color: var(--dark-blue);
-    padding: 5px 10px;    
-    border-radius: 4px;
-    color: white;
-}
 
+/* =========================================================
+   ATÉ 520PX
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+  .allpaca-hero {
+    height: 190px;
+  }
+
+
+  .hero-alpaca-container {
+    left: 12%;
+
+    bottom: 8px;
+  }
+
+
+  .hero-alpaca {
+    width: 145px;
+
+    height: 145px;
+  }
+
+
+  .navigation-item {
+    min-height: 38px;
+
+    padding: 5px 7px;
+
+    font-size: 12px;
+  }
+
+
+  .navigation-icon {
+    width: 24px;
+
+    height: 24px;
+  }
+
+
+  .navigation-search {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+
+  .user-info {
+    font-size: 12px;
+  }
+
+}

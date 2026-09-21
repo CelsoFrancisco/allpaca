@@ -1,17 +1,86 @@
-<section class="product-list">
-    <div class="product-list__card" *ngFor="let produto of produtos">
-        <a routerLink= "/produtos/{{produto.id}}" class="product-list__link">
-            <img [src]="produto.imagem">
-            <h2 class="product-item__name">
-                {{produto.descricao}}
-            </h2>
-            <p class="product-item__price">
-                {{produto.preco | currency: "BRL"}}
-            </p>
-            <p class="product-item__price-description">
-                {{produto.descricaoPreco}}
-            </p>
-            <button class="product-item__buy-button" type="button">Comprar</button>
-        </a>
-    </div>
+<section class="products-page">
+
+    <!-- LISTA DE PRODUTOS -->
+
+    <section class="product-list">
+
+        <article
+            #productCard
+            class="product-list__item reveal-card"
+            *ngFor="let produto of produtos"
+        >
+
+            <!-- CARD DO PRODUTO -->
+
+            <div class="product-list__card">
+
+                <a
+                    [routerLink]="['/produtos', produto.id]"
+                    class="product-list__link"
+                >
+
+                    <!-- IMAGEM -->
+
+                    <div class="product-image">
+
+                        <img
+                            [src]="produto.imagem"
+                            [alt]="produto.descricao"
+                        >
+
+                    </div>
+
+
+                    <!-- INFORMAÇÕES -->
+
+                    <div class="product-info">
+
+                        <h2 class="product-item__name">
+                            {{ produto.descricao }}
+                        </h2>
+
+
+                        <p class="product-item__price">
+                            {{ produto.preco | currency: "BRL" }}
+                        </p>
+
+
+                        <p class="product-item__price-description">
+                            {{ produto.descricaoPreco }}
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <!-- BOTÕES -->
+
+                <div class="product-item__buttons">
+
+                    <button
+                        class="product-item__cart-button"
+                        type="button"
+                        (click)="adicionarAoCarrinho(produto)"
+                    >
+                        Adicionar
+                    </button>
+
+
+                    <button
+                        class="product-item__buy-button"
+                        type="button"
+                        (click)="comprarAgora(produto)"
+                    >
+                        Comprar agora
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    </section>
+
 </section>

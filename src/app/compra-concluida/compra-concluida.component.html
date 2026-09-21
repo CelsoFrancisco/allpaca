@@ -1,0 +1,127 @@
+<section class="purchase-page">
+
+  <main class="purchase-content">
+
+    <!-- Imagem principal da compra concluída -->
+    <img
+      src="assets/allpaca/compra-concluida.png"
+      alt="Compra concluída"
+      class="purchase-image"
+    >
+
+    <!-- Produtos comprados -->
+    <section
+      class="purchase-products"
+      *ngIf="produtosComprados.length > 0"
+    >
+
+      <h2>Itens da sua compra</h2>
+
+      <article
+        class="purchase-product"
+        *ngFor="let produto of produtosComprados"
+      >
+
+        <!-- Imagem do produto -->
+        <div class="purchase-product-image">
+
+          <img
+            [src]="produto.imagem"
+            [alt]="produto.descricao"
+          >
+
+        </div>
+
+        <!-- Informações do produto -->
+        <div class="purchase-product-info">
+
+          <h3>
+            {{ produto.descricao }}
+          </h3>
+
+          <p class="product-description">
+            {{ produto.descricaoPreco }}
+          </p>
+
+          <div class="product-details">
+
+            <span>
+              Quantidade:
+              <strong>
+                {{ produto.quantidade }}
+              </strong>
+            </span>
+
+            <span>
+              Valor:
+              <strong>
+                {{ produto.preco * produto.quantidade | currency:'BRL' }}
+              </strong>
+            </span>
+
+            <span>
+              Parcelamento:
+              <strong>
+                {{ produto.parcelas }}x
+              </strong>
+            </span>
+
+            <span>
+              Valor da parcela:
+              <strong>
+                {{ valorParcela(produto) | currency:'BRL' }}
+              </strong>
+            </span>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- Botões -->
+    <div class="purchase-actions">
+
+      <button
+        type="button"
+        class="purchase-button purchase-button--primary"
+        (click)="continuarComprando()"
+      >
+
+        <img
+          src="assets/allpaca/icons/cart.png"
+          alt=""
+          class="button-icon"
+        >
+
+        <span>
+          Continuar comprando
+        </span>
+
+      </button>
+
+      <button
+        type="button"
+        class="purchase-button purchase-button--secondary"
+        (click)="verPedidos()"
+      >
+
+        <img
+          src="assets/allpaca/icons/orders.png"
+          alt=""
+          class="button-icon"
+        >
+
+        <span>
+          Ver meus pedidos
+        </span>
+
+      </button>
+
+    </div>
+
+  </main>
+
+</section>

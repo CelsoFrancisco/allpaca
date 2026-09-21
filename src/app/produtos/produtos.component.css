@@ -1,70 +1,315 @@
-.product-list {
-    padding: 40px 0;
-    width: fit-content;    
-    display: flex;
-    gap: 20px;
-    flex-flow: row wrap;  
-    justify-content: space-evenly;
-    align-content: center;  
+/* =========================================================
+   PÁGINA DE PRODUTOS - ALLpaca
+   ========================================================= */
+
+.products-page {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 30px 60px;
+  box-sizing: border-box;
 }
 
+/* =========================================================
+   GRID DOS PRODUTOS
+   ========================================================= */
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px;
+}
+
+/* =========================================================
+   ITEM
+   ========================================================= */
+
+.product-list__item {
+  min-width: 0;
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
 .product-list__card {
-    box-sizing: border-box;
-    padding: 10px;
-    border-radius: 4px;
-    flex: 0 1 270px;
-    height: 450px;
-    background-color: white;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;       
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  background: var(--allpaca-snow);
+  border: 4px solid var(--allpaca-coal-dark);
+  box-shadow: var(--allpaca-shadow);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .product-list__card:hover {
-    outline: 1px solid var(--blue);
-    transform: scale(1.1, 1.1);
-    cursor: pointer;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0 var(--allpaca-coal-dark);
 }
+
+/* =========================================================
+   LINK DO PRODUTO
+   ========================================================= */
 
 .product-list__link {
-    display: flex;
-    flex-direction: column;    
-    align-items: center;
-    row-gap: 10px; 
-    text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  color: inherit;
+  text-decoration: none;
 }
 
-.product-list__card img {
-    height: 250px;
-    width: 250px;    
-    display: block;
-    border-radius: 4px;
+/* =========================================================
+   ÁREA DA IMAGEM
+   ========================================================= */
+
+.product-image {
+  width: 100%;
+  height: 230px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      to bottom,
+      var(--allpaca-sky-bottom) 0%,
+      var(--allpaca-sky-bottom) 72%,
+      var(--allpaca-grass) 72%,
+      var(--allpaca-grass) 100%
+    );
+
+  border-bottom: 4px solid var(--allpaca-coal-dark);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   IMAGEM PIXEL-ART
+   ========================================================= */
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  image-rendering: pixelated;
+
+  transition: transform 0.15s ease;
+}
+
+.product-list__card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+/* =========================================================
+   INFORMAÇÕES
+   ========================================================= */
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  padding: 18px 18px 12px;
+
+  background: var(--allpaca-snow);
 }
 
 .product-item__name {
-    font-size: 24px;
-    color: var(--blue);
+  margin: 0 0 10px;
+
+  color: var(--allpaca-coal-dark);
+
+  font-family: var(--allpaca-font-pixel);
+  font-size: 18px;
+  line-height: 1.4;
+
+  text-transform: uppercase;
 }
 
 .product-item__price {
-    color: var(--orange);
-    font-size: 32px;
-    font-weight: bold;
+  margin: 0 0 6px;
+
+  color: var(--allpaca-grass-dark);
+
+  font-family: var(--allpaca-font-pixel);
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.product-item__price-deion {
-    color: var(--gray);
-    font-size: 12px;
-    font-weight: bold;
+.product-item__price-description {
+  margin: 0;
+
+  color: var(--allpaca-text-muted);
+
+  font-size: 13px;
+  line-height: 1.5;
 }
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
+.product-item__buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  padding: 14px;
+
+  background: var(--allpaca-stone-light);
+
+  border-top: 4px solid var(--allpaca-coal-dark);
+}
+
+.product-item__buttons button {
+  min-height: 44px;
+
+  padding: 8px 10px;
+
+  border: 3px solid var(--allpaca-coal-dark);
+
+  font-family: var(--allpaca-font-pixel);
+  font-size: 12px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.product-item__buttons button:hover {
+  transform: translateY(-2px);
+}
+
+.product-item__buttons button:active {
+  transform: translateY(2px);
+}
+
+/* =========================================================
+   BOTÃO ADICIONAR
+   ========================================================= */
+
+.product-item__cart-button {
+  background: var(--allpaca-gold);
+  color: var(--allpaca-coal-dark);
+
+  box-shadow: 0 3px 0 var(--allpaca-gold-dark);
+}
+
+.product-item__cart-button:hover {
+  background: var(--allpaca-gold-light);
+}
+
+/* =========================================================
+   BOTÃO COMPRAR
+   ========================================================= */
 
 .product-item__buy-button {
-    background-color: var(--blue);
-    border: none;
-    color: white;
-    font-size: 20px;
-    padding: 6px 12px;
+  background: var(--allpaca-grass);
+  color: var(--allpaca-white);
+
+  box-shadow: 0 3px 0 var(--allpaca-grass-dark);
 }
 
 .product-item__buy-button:hover {
-    filter: brightness(1.1);
-    cursor: pointer;
+  background: var(--allpaca-grass-light);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .product-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .product-image {
+    height: 220px;
+  }
+}
+
+/* =========================================================
+   TABLET PEQUENO
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .products-page {
+    padding: 30px 20px 50px;
+  }
+
+  .product-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .product-image {
+    height: 210px;
+    padding: 15px;
+  }
+
+  .product-item__name {
+    font-size: 16px;
+  }
+
+  .product-item__price {
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  .products-page {
+    padding: 20px 14px 40px;
+  }
+
+  .product-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .product-image {
+    height: 250px;
+    padding: 20px;
+  }
+
+  .product-item__buttons {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =========================================================
+   CELULAR PEQUENO
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .product-image {
+    height: 220px;
+  }
+
+  .product-item__buttons {
+    grid-template-columns: 1fr;
+  }
 }

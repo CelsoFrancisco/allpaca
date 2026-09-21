@@ -1,17 +1,349 @@
-<h2 class="cart-title">Carrinho</h2>
-<div *ngIf="itensCarrinho.length > 0; else semProduto">
-    <ul>
-        <li *ngFor="let itemCarrinho of itensCarrinho">
-           <img [src]="itemCarrinho.imagem">
-            <p>{{itemCarrinho.descricao}}r</p>
-            <p>Preço: {{itemCarrinho.preco | currency: "BRL"}} </p>
-            <label>Quantidade:
-                <input type="number"[(ngModel)]="itemCarrinho.quantidade" (change)="calculaTotal()" min="1">
-            </label>
-            <button class="remove-button" (click)="removerProdutoCarrinho(itemCarrinho.id)"><i class="fa-solid fa-x"></i></button>
-        </li>
-    </ul>
-    <h2 class="cart-total" >Total: {{total | currency: "BRL"}}</h2>
-    <button class="buy-button" (click)="comprar()">Comprar</button>
-</div>
-<ng-template #semProduto>Nenhum produto foi adicionado ao carrinho.</ng-template>
+<section class="cart-page">
+
+  <div class="cart-building">
+
+    <div class="building-top">
+
+      <div class="building-leaf leaf-left"></div>
+
+      <div class="building-title">
+
+        <img
+          src="assets/allpaca/allpaca-logo.png"
+          alt="ALLpaca"
+        >
+
+      </div>
+
+      <div class="building-leaf leaf-right"></div>
+
+    </div>
+
+
+    <div class="cart-body">
+
+      <main class="cart-board">
+
+        <header class="cart-board-header">
+
+          <div class="cart-header-icon">
+
+            <img
+              src="assets/allpaca/icons/cart.png"
+              alt=""
+            >
+
+          </div>
+
+
+          <div>
+
+            <span class="cart-label">
+              INVENTÁRIO
+            </span>
+
+            <h1>
+              Meu carrinho
+            </h1>
+
+          </div>
+
+        </header>
+
+
+        <div
+          *ngIf="itensCarrinho.length > 0; else semProduto"
+          class="cart-content"
+        >
+
+          <ul class="cart-list">
+
+            <li
+              *ngFor="let itemCarrinho of itensCarrinho"
+              class="cart-item"
+            >
+
+              <div class="cart-item__image">
+
+                <img
+                  [src]="itemCarrinho.imagem"
+                  [alt]="itemCarrinho.descricao"
+                >
+
+              </div>
+
+
+              <div class="cart-item__info">
+
+                <span class="item-label">
+                  PRODUTO
+                </span>
+
+
+                <p class="cart-item__name">
+                  {{ itemCarrinho.descricao }}
+                </p>
+
+
+                <p class="cart-item__price">
+
+                  Preço unitário:
+
+                  <strong>
+                    {{ itemCarrinho.preco | currency:"BRL" }}
+                  </strong>
+
+                </p>
+
+
+                <div class="cart-item__installment">
+
+                  <span class="installment-title">
+                    PAGAMENTO
+                  </span>
+
+
+                  <div class="installment-options">
+
+                    <button
+                      type="button"
+                      *ngFor="let parcelas of [1, 2, 3, 6, 12]"
+                      class="installment-option"
+                      [class.selected]="itemCarrinho.parcelas === parcelas"
+                      (click)="selecionarParcelas(itemCarrinho, parcelas)"
+                    >
+                      {{ parcelas }}x
+                    </button>
+
+                  </div>
+
+
+                  <div class="installment-result">
+
+                    <strong>
+
+                      {{ itemCarrinho.parcelas }}x
+
+                      de
+
+                      {{
+                        (itemCarrinho.preco * itemCarrinho.quantidade)
+                        / itemCarrinho.parcelas
+                        | currency:"BRL"
+                      }}
+
+                    </strong>
+
+
+                    <small>
+                      sem juros
+                    </small>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <label class="cart-item__quantity">
+
+                <span>
+                  QUANTIDADE
+                </span>
+
+
+                <input
+                  type="number"
+                  [(ngModel)]="itemCarrinho.quantidade"
+                  (change)="calculaTotal()"
+                  min="1"
+                >
+
+              </label>
+
+
+              <button
+                type="button"
+                class="remove-button"
+                (click)="removerProdutoCarrinho(itemCarrinho.id)"
+                aria-label="Remover produto"
+              >
+
+                <i class="fa-solid fa-x"></i>
+
+              </button>
+
+            </li>
+
+          </ul>
+
+
+          <section class="cart-summary">
+
+            <div class="cart-total">
+
+              <span>
+                TOTAL DA COMPRA
+              </span>
+
+              <strong>
+                {{ total | currency:"BRL" }}
+              </strong>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="buy-button"
+              (click)="comprar()"
+            >
+
+              <span>
+                Comprar
+              </span>
+
+            </button>
+
+          </section>
+
+        </div>
+
+
+        <ng-template #semProduto>
+
+          <div class="empty-cart">
+
+            <div class="empty-cart__icon">
+
+              <img
+                src="assets/allpaca/moods/alpaca-carrinho.png"
+                alt="ALLpaca com carrinho"
+              >
+
+            </div>
+
+
+            <h2>
+              Seu carrinho está vazio
+            </h2>
+
+
+            <p>
+              Nenhum produto foi adicionado ao carrinho.
+            </p>
+
+
+            <span>
+              Adicione alguns produtos para começar sua compra.
+            </span>
+
+          </div>
+
+        </ng-template>
+
+      </main>
+
+    </div>
+
+
+    <div class="building-bottom">
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       AVISO DE LOGIN
+       ===================================================== -->
+
+  <div
+    class="login-warning-overlay"
+    *ngIf="mostrarAvisoLogin"
+    (click)="fecharAvisoLogin()"
+  >
+
+    <div
+      class="login-warning-modal"
+      (click)="$event.stopPropagation()"
+    >
+
+      <div class="login-warning-image">
+
+        <img
+          src="assets/allpaca/moods/alpaca-aviso.png"
+          alt="ALLpaca avisando que é necessário fazer login"
+        >
+
+      </div>
+
+
+      <div class="login-warning-content">
+
+        <span class="login-warning-label">
+          ATENÇÃO
+        </span>
+
+
+        <h2>
+          Você não está logado!
+        </h2>
+
+
+        <p>
+          Para finalizar sua compra,
+          você precisa entrar na sua conta.
+        </p>
+
+
+        <div class="login-warning-actions">
+
+          <button
+            type="button"
+            class="login-warning-button login-warning-button--primary"
+            (click)="irParaLogin()"
+          >
+
+            <img
+              src="assets/allpaca/icons/login.png"
+              alt=""
+            >
+
+            <span>
+              Entrar
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="login-warning-button login-warning-button--secondary"
+            (click)="fecharAvisoLogin()"
+          >
+
+            <span>
+              Voltar
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

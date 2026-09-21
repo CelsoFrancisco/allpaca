@@ -1,42 +1,249 @@
+/* =========================================================
+   FOOTER - ALLpaca
+   ========================================================= */
+
 .footer {
-    background-color: var(--light-gray);        
-    color: var(--gray);
-    font-size: 18px;
+  width: 100%;
+
+  margin-top: 50px;
+
+  background: var(--allpaca-coal-dark);
+
+  color: var(--allpaca-text-light);
+
+  border-top: 6px solid var(--allpaca-grass);
+
+  box-sizing: border-box;
 }
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
 
 .footer__container {
-    display: flex;
-    justify-content: space-evenly;
-    flex-flow: row wrap;
-    padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 45px 30px;
+
+  display: grid;
+
+  grid-template-columns:
+    1.5fr
+    1fr
+    1fr;
+
+  gap: 50px;
+
+  box-sizing: border-box;
 }
 
-.footer__copyright {
-    text-align: center;
-    margin-top: 20px;
-    background-color: var(--light-gray-2);    
-    font-weight: bold;
-    padding: 20px;
-    color: var(--gray);
+/* =========================================================
+   SEÇÕES
+   ========================================================= */
+
+.footer__section {
+  min-width: 0;
 }
 
 .footer__title {
-    font-size: 22px;
-    font-weight: bold;
-    color: var(--blue);
-    margin-bottom: 5px;
+  margin: 0 0 18px;
+
+  color: var(--allpaca-gold);
+
+  font-family: var(--allpaca-font-pixel);
+
+  font-size: 18px;
+
+  text-transform: uppercase;
 }
 
-.footer__about-text {
-    width: 400px;
-    text-align: justify;
+/* =========================================================
+   SOBRE
+   ========================================================= */
+
+.footer-about-text {
+  max-width: 450px;
+
+  margin: 0;
+
+  color: var(--allpaca-text-light);
+
+  font-size: 14px;
+
+  line-height: 1.7;
 }
 
+/* =========================================================
+   CONTATO
+   ========================================================= */
 
-.footer i {
-    color: var(--orange);
+.footer address {
+  font-style: normal;
 }
 
-.footer li {
-    margin: 10px 0;
+.footer ul {
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+.footer__contact li {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 14px;
+
+  color: var(--allpaca-text-light);
+
+  font-size: 14px;
+}
+
+.footer__contact li:last-child {
+  margin-bottom: 0;
+}
+
+.footer__contact i {
+  width: 20px;
+
+  color: var(--allpaca-gold);
+
+  font-size: 17px;
+
+  text-align: center;
+}
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+.footer__links {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.footer__links li {
+  margin: 0;
+}
+
+.footer__links a {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--allpaca-text-light);
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.footer__links a i {
+  width: 20px;
+
+  color: var(--allpaca-gold);
+
+  text-align: center;
+}
+
+.footer__links a:hover {
+  color: var(--allpaca-gold);
+
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   COPYRIGHT
+   ========================================================= */
+
+.footer__copyright {
+  width: 100%;
+
+  padding: 18px 20px;
+
+  box-sizing: border-box;
+
+  background: var(--allpaca-coal);
+
+  border-top: 2px solid var(--allpaca-stone-dark);
+
+  text-align: center;
+}
+
+.footer__copyright p {
+  margin: 0;
+
+  color: var(--allpaca-text-muted);
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .footer__container {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 35px;
+  }
+
+  .footer__section:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  .footer {
+    margin-top: 35px;
+  }
+
+  .footer__container {
+    grid-template-columns: 1fr;
+
+    padding: 35px 20px;
+
+    gap: 30px;
+  }
+
+  .footer__section:first-child {
+    grid-column: auto;
+  }
+
+  .footer__title {
+    font-size: 16px;
+  }
+
+  .footer-about-text {
+    max-width: none;
+
+    font-size: 13px;
+  }
+
+  .footer__contact li,
+  .footer__links a {
+    font-size: 13px;
+  }
 }

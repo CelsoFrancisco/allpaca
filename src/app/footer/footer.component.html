@@ -1,29 +1,84 @@
 <footer class="footer">
-    <div class="footer__container">
-        <section>
-            <h2 class="footer__title">Sobre</h2>
-            <p class="footer-about-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum obcaecati asperiores, dolore debitis pariatur dicta rem repudiandae 
-            </p>
-        </section>
-        <address>
-            <h2 class="footer__title">Contato</h2>
-                <ul>
 
-                    <li> <i class="fa-solid fa-envelope"></i>
-                        email@email.com                        
-                    </li> <i class="fa-solid fa-mobile"></i>
-                         (00) 00000-0000
-                    <li>
-                        <i class="fa-brands fa-whatsapp"></i>
-                        (00) 00000-0000
-                    </li> 
-                    
-                </ul>
-           
-        </address>
-    </div>
-    <section class="footer__copyright">
-        &copy; Todos os direitos reservados
+  <div class="footer__container">
+
+    <!-- SOBRE -->
+    <section class="footer__section">
+      <h2 class="footer__title">Sobre a ALLpaca</h2>
+
+      <p class="footer-about-text">
+        A ALLpaca é uma loja virtual criada para oferecer produtos
+        de tecnologia e acessórios para o seu setup.
+      </p>
     </section>
+
+    <!-- CONTATO -->
+    <address class="footer__section footer__contact">
+      <h2 class="footer__title">Contato</h2>
+
+      <ul>
+
+        <li>
+          <i class="fa-solid fa-envelope"></i>
+          <span>contato@allpaca.com</span>
+        </li>
+
+        <li>
+          <i class="fa-solid fa-mobile"></i>
+          <span>(21) 99999-9999</span>
+        </li>
+
+        <li>
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>(21) 99999-9999</span>
+        </li>
+
+      </ul>
+    </address>
+
+    <!-- LINKS -->
+    <section class="footer__section">
+      <h2 class="footer__title">Navegação</h2>
+
+      <ul class="footer__links">
+
+        <li>
+          <a routerLink="/produtos">
+            <i class="fa-solid fa-box"></i>
+            Produtos
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="/pedidos">
+            <i class="fa-solid fa-receipt"></i>
+            Meus pedidos
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="/perfil">
+            <i class="fa-solid fa-user"></i>
+            Meu perfil
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="/carrinho">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Carrinho
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+  </div>
+
+  <section class="footer__copyright">
+    <p>
+      &copy; {{ currentYear }} ALLpaca. Todos os direitos reservados.
+    </p>
+  </section>
+
 </footer>

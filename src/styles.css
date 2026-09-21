@@ -1,62 +1,569 @@
-/* You can add global styles to this file, and also import other style files */
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+/* ========================================
+   FONTE PRINCIPAL DA ALLPACA
+   ======================================== */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+/* ========================================
+   RESET
+   ======================================== */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
 }
+
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+html,
 body {
-	line-height: 1;
-    font-family: "Open Sans", Helvetica, Arial, "sans-serif";    
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
 }
-ol, ul {
-	list-style: none;
+
+
+/* ========================================
+   BODY
+   ======================================== */
+
+body {
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    /*
+     * Press Start 2P agora é a fonte principal
+     * da interface da ALLpaca.
+     */
+    font-family:
+        var(--allpaca-font-pixel);
+
+    line-height: 1.5;
+
+    color:
+        var(--allpaca-text);
+
+background-image:
+    linear-gradient(
+        rgba(20, 35, 25, 0.20),
+        rgba(20, 35, 25, 0.20)
+    ),
+    url("/assets/allpaca/background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    background-color: #1b3320;
 }
-blockquote, q {
-	quotes: none;
+
+
+/* ========================================
+   ANGULAR ROOT
+   ======================================== */
+
+app-root {
+    display: block;
+
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+
+/* ========================================
+   LISTAS
+   ======================================== */
+
+ol,
+ul {
+    list-style: none;
 }
+
+
+blockquote,
+q {
+    quotes: none;
+}
+
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+    content: "";
+}
+
+
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
+
+
+/* ========================================
+   VARIÁVEIS DA ALLPACA
+   ======================================== */
 
 :root {
-    --orange: #ff7000;
-    --blue: #004a76;
-	--green: #00A200;
-    --dark-blue: #002d47;
-    --gray: rgba(88, 89, 91, 1);
-    --light-gray: rgba(232, 232, 232, 1);    
-    --light-gray-2: rgb(247, 247, 247);
+
+    /* ----------------------------------------
+       GRAMA
+       ---------------------------------------- */
+
+    --allpaca-grass: #4CAF50;
+    --allpaca-grass-dark: #2E7D32;
+    --allpaca-grass-light: #7ED957;
+
+
+    /* ----------------------------------------
+       TERRA
+       ---------------------------------------- */
+
+    --allpaca-earth: #795548;
+    --allpaca-earth-dark: #4E342E;
+    --allpaca-earth-light: #A1887F;
+
+
+    /* ----------------------------------------
+       CÉU
+       ---------------------------------------- */
+
+    --allpaca-sky-top: #2196F3;
+    --allpaca-sky-bottom: #64B5F6;
+
+
+    /* ----------------------------------------
+       OURO
+       ---------------------------------------- */
+
+    --allpaca-gold: #FFC107;
+    --allpaca-gold-dark: #F57C00;
+    --allpaca-gold-light: #FFD54F;
+
+
+    /* ----------------------------------------
+       PEDRA
+       ---------------------------------------- */
+
+    --allpaca-stone: #9E9E9E;
+    --allpaca-stone-dark: #616161;
+    --allpaca-stone-light: #E0E0E0;
+
+
+    /* ----------------------------------------
+       CARVÃO
+       ---------------------------------------- */
+
+    --allpaca-coal: #263238;
+    --allpaca-coal-dark: #111820;
+    --allpaca-coal-light: #37474F;
+
+
+    /* ----------------------------------------
+       NEVE / BRANCO
+       ---------------------------------------- */
+
+    --allpaca-snow: #FAFAFA;
+    --allpaca-white: #FFFFFF;
+
+
+    /* ----------------------------------------
+       TEXTOS
+       ---------------------------------------- */
+
+    --allpaca-text: #263238;
+    --allpaca-text-light: #ECEFF1;
+    --allpaca-text-muted: #78909C;
+
+
+    /* ----------------------------------------
+       STATUS
+       ---------------------------------------- */
+
+    --allpaca-success: #43A047;
+    --allpaca-success-dark: #2E7D32;
+
+    --allpaca-danger: #E53935;
+    --allpaca-danger-dark: #B71C1C;
+
+    --allpaca-warning: #FFB300;
+    --allpaca-info: #1E88E5;
+
+
+    /* ----------------------------------------
+       PAINÉIS
+       ---------------------------------------- */
+
+    --allpaca-panel: #263238;
+    --allpaca-panel-light: #37474F;
+
+    --allpaca-border: #111820;
+    --allpaca-border-light: #607D8B;
+
+
+    /* ----------------------------------------
+       SOMBRAS
+       ---------------------------------------- */
+
+    --allpaca-shadow:
+        0 4px 0 #111820;
+
+    --allpaca-shadow-small:
+        0 2px 0 #111820;
+
+
+    /* ----------------------------------------
+       FONTES
+       ---------------------------------------- */
+
+    /*
+     * Fonte principal da interface.
+     *
+     * Usada em:
+     * - Botões
+     * - Menus
+     * - Títulos
+     * - Produtos
+     * - Informações
+     * - Cards
+     * - Formulários
+     * - Textos da interface
+     */
+    --allpaca-font-pixel:
+        "Press Start 2P",
+        monospace;
+
+
+    /*
+     * Fonte alternativa para textos longos.
+     *
+     * Mantemos essa variável caso futuramente
+     * alguma página precise de uma fonte mais
+     * confortável para leitura.
+     */
+    --allpaca-font-body:
+        "Inter",
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* ========================================
+   LINKS
+   ======================================== */
+
+a {
+    color:
+        var(--allpaca-grass-dark);
+
+    text-decoration: none;
+
+    transition:
+        color 0.15s ease;
+}
+
+
+a:hover {
+    color:
+        var(--allpaca-gold-dark);
+}
+
+
+/* ========================================
+   IMAGENS
+   ======================================== */
+
+img {
+    image-rendering: pixelated;
+}
+
+
+/* ========================================
+   FORMULÁRIOS E BOTÕES
+   ======================================== */
+
+/*
+ * Garante que os elementos de interação
+ * também utilizem a fonte da ALLpaca.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-family:
+        var(--allpaca-font-pixel);
+}
+
+
+/*
+ * Mantém a fonte da ALLpaca em botões
+ * mesmo quando algum componente possui
+ * estilos próprios.
+ */
+
+button {
+    font-family:
+        var(--allpaca-font-pixel);
+}
+
+
+/* ========================================
+   SELEÇÃO DE TEXTO
+   ======================================== */
+
+::selection {
+    background-color:
+        var(--allpaca-grass);
+
+    color:
+        var(--allpaca-white);
+}
+
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+
+::-webkit-scrollbar-track {
+    background-color:
+        var(--allpaca-coal-dark);
+}
+
+
+::-webkit-scrollbar-thumb {
+    background-color:
+        var(--allpaca-earth);
+
+    border:
+        2px solid
+        var(--allpaca-coal-dark);
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background-color:
+        var(--allpaca-earth-light);
+}
+
+
+/* ========================================
+   TÍTULO PIXEL
+   ======================================== */
+
+.allpaca-pixel-title {
+    font-family:
+        var(--allpaca-font-pixel);
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    color:
+        var(--allpaca-gold);
+
+    text-shadow:
+        2px 2px 0
+        var(--allpaca-coal-dark);
+}
+
+
+/* ========================================
+   PAINEL ALLPACA
+   ======================================== */
+
+.allpaca-panel {
+    background-color:
+        var(--allpaca-panel);
+
+    border:
+        3px solid
+        var(--allpaca-border);
+
+    box-shadow:
+        var(--allpaca-shadow);
+}
+
+
+/* ========================================
+   BOTÃO ALLPACA
+   ======================================== */
+
+.allpaca-button {
+    border:
+        3px solid
+        var(--allpaca-border);
+
+    background-color:
+        var(--allpaca-grass);
+
+    color:
+        var(--allpaca-white);
+
+    font-family:
+        var(--allpaca-font-pixel);
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        var(--allpaca-shadow-small);
+
+    transition:
+        transform 0.08s ease,
+        box-shadow 0.08s ease,
+        background-color 0.15s ease;
+}
+
+
+.allpaca-button:hover {
+    background-color:
+        var(--allpaca-grass-dark);
+}
+
+
+.allpaca-button:active {
+    transform:
+        translateY(2px);
+
+    box-shadow:
+        none;
+}
+
+
+.allpaca-button:disabled {
+    background-color:
+        var(--allpaca-stone);
+
+    cursor: not-allowed;
+
+    opacity: 0.7;
+}

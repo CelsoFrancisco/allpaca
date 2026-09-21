@@ -1,15 +1,326 @@
-.container {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+/* =========================================================
+   PÁGINA NÃO ENCONTRADA
+   ========================================================= */
+
+.not-found-page {
+  width: 100%;
+
+  min-height: calc(100vh - 464px);
+
+  margin: 0;
+
+  padding: 50px 20px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.not-found-card {
+  width: 100%;
+
+  max-width: 900px;
+
+  min-height: 420px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 50px;
+
+  padding: 40px;
+
+  box-sizing: border-box;
+
+  background:
+    var(--allpaca-stone);
+
+  border:
+    6px solid var(--allpaca-coal-dark);
+
+  box-shadow:
+    8px 8px 0 var(--allpaca-coal-dark);
+
+  image-rendering: pixelated;
+}
+
+
+/* =========================================================
+   IMAGEM
+   ========================================================= */
+
+.not-found-image {
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+.not-found-image img {
+  display: block;
+
+  width: 300px;
+
+  max-width: 100%;
+
+  height: auto;
+
+  image-rendering: pixelated;
+
+  filter:
+    drop-shadow(
+      6px 6px 0 var(--allpaca-coal-dark)
+    );
+}
+
+
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+
+.not-found-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  justify-content: center;
+}
+
+
+.not-found-label {
+  display: inline-block;
+
+  margin-bottom: 14px;
+
+  padding: 7px 10px;
+
+  background:
+    var(--allpaca-coal-dark);
+
+  color:
+    var(--allpaca-gold);
+
+  border:
+    3px solid var(--allpaca-coal);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 13px;
+
+  line-height: 1.4;
+}
+
+
+.not-found-content h1 {
+  margin: 0 0 18px;
+
+  color:
+    var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 28px;
+
+  line-height: 1.5;
+
+  text-transform: uppercase;
+}
+
+
+.not-found-content p {
+  margin: 4px 0;
+
+  color:
+    var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 12px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   BOTÃO
+   ========================================================= */
+
+.not-found-button {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 28px;
+
+  padding: 12px 16px;
+
+  min-height: 50px;
+
+  box-sizing: border-box;
+
+  background:
+    var(--allpaca-grass);
+
+  color:
+    var(--allpaca-snow);
+
+  border:
+    4px solid var(--allpaca-coal-dark);
+
+  box-shadow:
+    4px 4px 0 var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 12px;
+
+  line-height: 1.4;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+
+.not-found-button img {
+  width: 28px;
+
+  height: 28px;
+
+  object-fit: contain;
+
+  image-rendering: pixelated;
+}
+
+
+.not-found-button:hover {
+  transform:
+    translate(2px, 2px);
+
+  box-shadow:
+    2px 2px 0 var(--allpaca-coal-dark);
+}
+
+
+.not-found-button:active {
+  transform:
+    translate(4px, 4px);
+
+  box-shadow:
+    0 0 0 var(--allpaca-coal-dark);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 780px) {
+
+  .not-found-page {
+    min-height: auto;
+
+    padding: 35px 15px;
+  }
+
+
+  .not-found-card {
+    flex-direction: column;
+
+    gap: 25px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+  }
+
+
+  .not-found-image img {
+    width: 230px;
+  }
+
+
+  .not-found-content {
     align-items: center;
-    height: 400px;
+  }
+
+
+  .not-found-content h1 {
+    font-size: 20px;
+  }
+
+
+  .not-found-content p {
+    font-size: 10px;
+  }
+
+
+  .not-found-button {
+    font-size: 10px;
+  }
+
 }
 
-.container i {
-    font-size: 200px;
-}
 
-.container h2 {
-    font-size: 44px;
+@media (max-width: 520px) {
+
+  .not-found-card {
+    border-width: 4px;
+
+    box-shadow:
+      5px 5px 0 var(--allpaca-coal-dark);
+  }
+
+
+  .not-found-image img {
+    width: 190px;
+  }
+
+
+  .not-found-content h1 {
+    font-size: 16px;
+  }
+
+
+  .not-found-content p {
+    font-size: 9px;
+
+    line-height: 1.8;
+  }
+
+
+  .not-found-button {
+    width: 100%;
+
+    font-size: 9px;
+  }
+
 }

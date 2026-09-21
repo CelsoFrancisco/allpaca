@@ -1,0 +1,430 @@
+<section class="orders-page">
+
+  <div class="orders-building">
+
+    <!-- =====================================
+         TOPO
+         ===================================== -->
+
+    <div class="building-top">
+
+      <div class="building-leaf leaf-left"></div>
+
+      <div class="building-title">
+
+        <img
+          src="assets/allpaca/allpaca-logo.png"
+          alt="ALLpaca"
+        >
+
+      </div>
+
+      <div class="building-leaf leaf-right"></div>
+
+    </div>
+
+
+    <!-- =====================================
+         CORPO
+         ===================================== -->
+
+    <div class="orders-body">
+
+      <main class="orders-board">
+
+        <!-- =================================
+             CABEÇALHO
+             ================================= -->
+
+        <header class="orders-board-header">
+
+          <div class="orders-header-icon">
+
+            <img
+              src="assets/allpaca/icons/orders.png"
+              alt=""
+            >
+
+          </div>
+
+          <div class="orders-header-info">
+
+            <span class="orders-label">
+              INVENTÁRIO
+            </span>
+
+            <h1>
+              Meus pedidos
+            </h1>
+
+            <p>
+              Confira suas compras na ALLpaca.
+            </p>
+
+          </div>
+
+        </header>
+
+
+        <!-- =================================
+             CARREGANDO
+             ================================= -->
+
+        <section
+          class="orders-loading"
+          *ngIf="carregando"
+        >
+
+          <div class="loading-icon">
+            📦
+          </div>
+
+          <p>
+            Carregando seus pedidos...
+          </p>
+
+        </section>
+
+
+        <!-- =================================
+             ERRO
+             ================================= -->
+
+        <section
+          class="orders-error"
+          *ngIf="!carregando && erro"
+        >
+
+          <div class="orders-message-icon">
+            ⚠
+          </div>
+
+          <h2>
+            Não foi possível carregar
+          </h2>
+
+          <p>
+            {{ erro }}
+          </p>
+
+        </section>
+
+
+        <!-- =================================
+             NENHUM PEDIDO
+             ================================= -->
+
+        <section
+          class="orders-empty"
+          *ngIf="
+            !carregando &&
+            !erro &&
+            pedidos.length === 0
+          "
+        >
+
+          <div class="orders-empty-image">
+
+            <img
+              src="assets/allpaca/moods/alpaca-dormindo.png"
+              alt="ALLpaca dormindo"
+            >
+
+          </div>
+
+          <h2>
+            Nenhum pedido encontrado
+          </h2>
+
+          <p>
+            Você ainda não realizou nenhuma compra.
+          </p>
+
+        </section>
+
+
+        <!-- =================================
+             LISTA DE PEDIDOS
+             ================================= -->
+
+        <section
+          class="orders-list"
+          *ngIf="
+            !carregando &&
+            !erro &&
+            pedidos.length > 0
+          "
+        >
+
+          <details
+            class="order-card"
+            *ngFor="
+              let pedido of pedidos;
+              let i = index
+            "
+            [open]="i === 0"
+          >
+
+            <!-- =================================
+                 RESUMO DO PEDIDO
+                 ================================= -->
+
+            <summary class="order-card-summary">
+
+              <div class="order-summary-icon">
+
+                <img
+                  src="assets/allpaca/icons/orders.png"
+                  alt=""
+                >
+
+              </div>
+
+
+              <div class="order-summary-main">
+
+                <span class="order-summary-label">
+                  PEDIDO
+                </span>
+
+                <strong class="order-summary-id">
+                  #{{ pedido.id }}
+                </strong>
+
+              </div>
+
+
+              <div class="order-summary-date">
+
+                <span>
+                  DATA
+                </span>
+
+                <strong>
+                  {{ pedido.date | date:'dd/MM/yyyy' }}
+                </strong>
+
+                <small>
+                  {{ pedido.date | date:'HH:mm' }}
+                </small>
+
+              </div>
+
+
+              <div class="order-summary-products">
+
+                <span>
+                  ITENS
+                </span>
+
+                <strong>
+                  {{ pedido.items.length }}
+                </strong>
+
+              </div>
+
+
+              <div class="order-summary-total">
+
+                <span>
+                  TOTAL
+                </span>
+
+                <strong>
+                  {{ calcularTotal(pedido) | currency:'BRL' }}
+                </strong>
+
+              </div>
+
+
+              <div class="order-summary-arrow">
+                <span></span>
+              </div>
+
+            </summary>
+
+
+            <!-- =================================
+                 CONTEÚDO DO PEDIDO
+                 ================================= -->
+
+            <div class="order-card-content">
+
+              <div class="order-content-header">
+
+                <div>
+
+                  <span>
+                    CONTEÚDO DO PEDIDO
+                  </span>
+
+                  <h2>
+                    Produtos comprados
+                  </h2>
+
+                </div>
+
+                <div class="order-content-total">
+
+                  <span>
+                    TOTAL
+                  </span>
+
+                  <strong>
+                    {{ calcularTotal(pedido) | currency:'BRL' }}
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <!-- =================================
+                   PRODUTOS
+                   ================================= -->
+
+              <section class="order-items">
+
+                <article
+                  class="order-item"
+                  *ngFor="
+                    let item of pedido.items
+                  "
+                >
+
+                  <!-- IMAGEM -->
+
+                  <div class="order-item-image">
+
+                    <img
+                      [src]="item.imagem"
+                      [alt]="item.productName"
+                    >
+
+                  </div>
+
+
+                  <!-- INFORMAÇÕES -->
+
+                  <div class="order-item-info">
+
+                    <span class="order-item-label">
+                      PRODUTO
+                    </span>
+
+                    <h3>
+                      {{ item.productName }}
+                    </h3>
+
+                    <p>
+                      Quantidade:
+                      <strong>
+                        {{ item.quantity }}
+                      </strong>
+                    </p>
+
+                  </div>
+
+
+                  <!-- PARCELAMENTO -->
+
+                  <div class="order-item-installment">
+
+                    <span>
+                      PAGAMENTO
+                    </span>
+
+                    <strong>
+                      {{ item.parcelas }}x
+                    </strong>
+
+                    <small>
+                      sem juros
+                    </small>
+
+                  </div>
+
+
+                  <!-- PREÇO -->
+
+                  <div class="order-item-price">
+
+                    <span>
+                      VALOR
+                    </span>
+
+                    <strong>
+                      {{
+                        item.price * item.quantity
+                        | currency:'BRL'
+                      }}
+                    </strong>
+
+                  </div>
+
+                </article>
+
+              </section>
+
+
+              <!-- =================================
+                   RODAPÉ DO PEDIDO
+                   ================================= -->
+
+              <footer class="order-card-footer">
+
+                <div class="order-footer-info">
+
+                  <span>
+                    PEDIDO #{{ pedido.id }}
+                  </span>
+
+                  <small>
+                    Compra realizada em
+                    {{ pedido.date | date:'dd/MM/yyyy HH:mm' }}
+                  </small>
+
+                </div>
+
+
+                <div class="order-footer-total">
+
+                  <span>
+                    TOTAL DO PEDIDO
+                  </span>
+
+                  <strong>
+                    {{ calcularTotal(pedido) | currency:'BRL' }}
+                  </strong>
+
+                </div>
+
+              </footer>
+
+            </div>
+
+          </details>
+
+        </section>
+
+      </main>
+
+    </div>
+
+
+    <!-- =====================================
+         BASE
+         ===================================== -->
+
+    <div class="building-bottom">
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+  </div>
+
+</section>

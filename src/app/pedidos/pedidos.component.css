@@ -1,0 +1,1734 @@
+/* =========================================
+   PEDIDOS
+   ========================================= */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+
+/* =========================================
+   PÁGINA
+   ========================================= */
+
+.orders-page {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 45px 20px 60px;
+}
+
+
+/* =========================================
+   CONSTRUÇÃO PRINCIPAL
+   ========================================= */
+
+.orders-building {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  border: 4px solid var(--allpaca-coal-dark);
+
+  background: var(--allpaca-stone-light);
+
+  box-shadow:
+    8px 8px 0
+    var(--allpaca-coal-dark);
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   TOPO
+   ========================================= */
+
+.building-top {
+  position: relative;
+
+  min-height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  background: transparent;
+
+  overflow: visible;
+}
+
+
+/* =========================================
+   LOGO
+   ========================================= */
+
+.building-title {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.building-title img {
+  display: block;
+
+  width: 300px;
+  max-width: 70%;
+
+  height: auto;
+
+  image-rendering: pixelated;
+
+  filter:
+    drop-shadow(
+      4px 4px 0
+      var(--allpaca-coal-dark)
+    );
+}
+
+
+/* =========================================
+   FOLHAS
+   ========================================= */
+
+.building-leaf {
+  display: none;
+}
+
+
+/* =========================================
+   CORPO
+   ========================================= */
+
+.orders-body {
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  background:
+    var(--allpaca-stone-light);
+}
+
+
+/* =========================================
+   PAINEL
+   ========================================= */
+
+.orders-board {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 25px;
+
+  background:
+    var(--allpaca-snow);
+
+  border:
+    4px solid
+    var(--allpaca-coal-dark);
+
+  box-shadow:
+    5px 5px 0
+    var(--allpaca-coal-dark);
+}
+
+
+/* =========================================
+   CABEÇALHO
+   ========================================= */
+
+.orders-board-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding-bottom: 22px;
+
+  margin-bottom: 22px;
+
+  border-bottom:
+    4px solid
+    var(--allpaca-stone-light);
+}
+
+
+/* =========================================
+   ÍCONE DO CABEÇALHO
+   ========================================= */
+
+.orders-header-icon {
+  width: 64px;
+  height: 64px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    var(--allpaca-gold);
+
+  border:
+    3px solid
+    var(--allpaca-coal-dark);
+
+  box-shadow:
+    3px 3px 0
+    var(--allpaca-coal-dark);
+}
+
+
+.orders-header-icon img {
+  width: 46px;
+  height: 46px;
+
+  object-fit: contain;
+
+  image-rendering: pixelated;
+}
+
+
+/* =========================================
+   CABEÇALHO - TEXTOS
+   ========================================= */
+
+.orders-header-info {
+  min-width: 0;
+}
+
+
+.orders-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 9px;
+
+  letter-spacing: 1px;
+}
+
+
+.orders-board-header h1 {
+  margin: 0;
+
+  color:
+    var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 22px;
+
+  line-height: 1.5;
+
+  text-transform: uppercase;
+}
+
+
+.orders-board-header p {
+  margin: 7px 0 0;
+
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 8px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   LISTA
+   ========================================= */
+
+.orders-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+
+/* =========================================
+   PEDIDO
+   ========================================= */
+
+.order-card {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  background:
+    var(--allpaca-stone-light);
+
+  border:
+    3px solid
+    var(--allpaca-coal-dark);
+
+  box-shadow:
+    4px 4px 0
+    var(--allpaca-coal-dark);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   RESUMO DO PEDIDO
+   ========================================= */
+
+.order-card-summary {
+  min-height: 88px;
+
+  display: grid;
+
+  grid-template-columns:
+    58px
+    minmax(150px, 1.5fr)
+    minmax(120px, 1fr)
+    90px
+    minmax(140px, 1fr)
+    30px;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 14px 16px;
+
+  box-sizing: border-box;
+
+  list-style: none;
+
+  cursor: pointer;
+
+  background:
+    var(--allpaca-snow);
+
+  transition:
+    background-color .12s ease;
+}
+
+
+/* Remove marcador padrão */
+
+.order-card-summary::-webkit-details-marker {
+  display: none;
+}
+
+.order-card-summary::marker {
+  display: none;
+}
+
+
+/* Hover */
+
+.order-card-summary:hover {
+  background:
+    #f4f8f4;
+}
+
+
+/* =========================================
+   ÍCONE DO PEDIDO
+   ========================================= */
+
+.order-summary-icon {
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    var(--allpaca-grass-light);
+
+  border:
+    3px solid
+    var(--allpaca-coal-dark);
+
+  box-shadow:
+    2px 2px 0
+    var(--allpaca-coal-dark);
+}
+
+
+.order-summary-icon img {
+  width: 38px;
+  height: 38px;
+
+  object-fit: contain;
+
+  image-rendering: pixelated;
+}
+
+
+/* =========================================
+   INFORMAÇÕES DO PEDIDO
+   ========================================= */
+
+.order-summary-main {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  min-width: 0;
+}
+
+
+.order-summary-label {
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 7px;
+
+  letter-spacing: .8px;
+}
+
+
+.order-summary-id {
+  color:
+    var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  word-break: break-word;
+}
+
+
+/* =========================================
+   DATA
+   ========================================= */
+
+.order-summary-date,
+.order-summary-products,
+.order-summary-total {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+
+.order-summary-date span,
+.order-summary-products span,
+.order-summary-total span {
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 7px;
+
+  letter-spacing: .7px;
+}
+
+
+.order-summary-date strong {
+  color:
+    var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 8px;
+}
+
+
+.order-summary-date small {
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 7px;
+}
+
+
+.order-summary-products strong {
+  color:
+    var(--allpaca-grass-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 13px;
+}
+
+
+.order-summary-total strong {
+  color:
+    var(--allpaca-gold-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 11px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   SETA
+   ========================================= */
+
+.order-summary-arrow {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    2px solid
+    var(--allpaca-coal-dark);
+
+  background:
+    var(--allpaca-stone-light);
+
+  box-shadow:
+    2px 2px 0
+    var(--allpaca-coal-dark);
+}
+
+
+.order-summary-arrow span {
+  width: 7px;
+  height: 7px;
+
+  display: block;
+
+  border-right:
+    3px solid
+    var(--allpaca-coal-dark);
+
+  border-bottom:
+    3px solid
+    var(--allpaca-coal-dark);
+
+  transform:
+    rotate(45deg)
+    translateY(-2px);
+
+  transition:
+    transform .15s ease;
+}
+
+
+/* =========================================
+   PEDIDO ABERTO
+   ========================================= */
+
+.order-card[open] {
+  background:
+    var(--allpaca-white);
+}
+
+
+.order-card[open] .order-card-summary {
+  background:
+    var(--allpaca-grass-light);
+
+  border-bottom:
+    3px solid
+    var(--allpaca-coal-dark);
+}
+
+
+.order-card[open] .order-summary-arrow span {
+  transform:
+    rotate(225deg)
+    translate(-2px, -2px);
+}
+
+
+/* =========================================
+   CONTEÚDO ABERTO
+   ========================================= */
+
+.order-card-content {
+  padding: 20px;
+
+  background:
+    var(--allpaca-snow);
+}
+
+
+/* =========================================
+   CABEÇALHO DO CONTEÚDO
+   ========================================= */
+
+.order-content-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-bottom: 16px;
+
+  margin-bottom: 16px;
+
+  border-bottom:
+    3px solid
+    var(--allpaca-stone-light);
+}
+
+
+.order-content-header span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 7px;
+
+  letter-spacing: .8px;
+}
+
+
+.order-content-header h2 {
+  margin: 0;
+
+  color:
+    var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 11px;
+
+  line-height: 1.7;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================
+   TOTAL DO CABEÇALHO
+   ========================================= */
+
+.order-content-total {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  gap: 5px;
+}
+
+
+.order-content-total strong {
+  color:
+    var(--allpaca-grass-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   PRODUTOS
+   ========================================= */
+
+.order-items {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+/* =========================================
+   ITEM
+   ========================================= */
+
+.order-item {
+  display: grid;
+
+  grid-template-columns:
+    72px
+    minmax(0, 1fr)
+    110px
+    140px;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 12px;
+
+  background:
+    var(--allpaca-stone-light);
+
+  border:
+    2px solid
+    var(--allpaca-stone-dark);
+
+  box-shadow:
+    2px 2px 0
+    var(--allpaca-coal-dark);
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   IMAGEM
+   ========================================= */
+
+.order-item-image {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    var(--allpaca-white);
+
+  border:
+    2px solid
+    var(--allpaca-coal-dark);
+
+  box-sizing: border-box;
+}
+
+
+.order-item-image img {
+  width: 60px;
+  height: 60px;
+
+  object-fit: contain;
+
+  image-rendering: pixelated;
+}
+
+
+/* =========================================
+   INFORMAÇÕES
+   ========================================= */
+
+.order-item-info {
+  min-width: 0;
+}
+
+
+.order-item-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 6px;
+
+  letter-spacing: .7px;
+}
+
+
+.order-item-info h3 {
+  margin: 0 0 7px;
+
+  color:
+    var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 9px;
+
+  line-height: 1.7;
+
+  word-break: break-word;
+}
+
+
+.order-item-info p {
+  margin: 0;
+
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 7px;
+
+  line-height: 1.8;
+}
+
+
+.order-item-info p strong {
+  color:
+    var(--allpaca-coal-dark);
+}
+
+
+/* =========================================
+   PARCELAMENTO
+   ========================================= */
+
+.order-item-installment {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  min-height: 58px;
+
+  padding: 8px;
+
+  background:
+    var(--allpaca-white);
+
+  border:
+    2px solid
+    var(--allpaca-stone-dark);
+
+  box-sizing: border-box;
+}
+
+
+.order-item-installment span {
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 6px;
+}
+
+
+.order-item-installment strong {
+  color:
+    var(--allpaca-grass-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 10px;
+}
+
+
+.order-item-installment small {
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 6px;
+}
+
+
+/* =========================================
+   PREÇO
+   ========================================= */
+
+.order-item-price {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  gap: 6px;
+}
+
+
+.order-item-price span {
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 6px;
+}
+
+
+.order-item-price strong {
+  color:
+    var(--allpaca-gold-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 10px;
+
+  line-height: 1.7;
+
+  text-align: right;
+}
+
+
+/* =========================================
+   RODAPÉ DO PEDIDO
+   ========================================= */
+
+.order-card-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-top: 16px;
+
+  padding-top: 16px;
+
+  border-top:
+    3px solid
+    var(--allpaca-stone-light);
+}
+
+
+.order-footer-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+
+.order-footer-info span {
+  color:
+    var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 7px;
+}
+
+
+.order-footer-info small {
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 6px;
+
+  line-height: 1.8;
+}
+
+
+.order-footer-total {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  gap: 6px;
+}
+
+
+.order-footer-total span {
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 7px;
+}
+
+
+.order-footer-total strong {
+  color:
+    var(--allpaca-grass-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 15px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   CARREGANDO
+   ========================================= */
+
+.orders-loading {
+  min-height: 280px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+
+  text-align: center;
+}
+
+
+.loading-icon {
+  font-size: 50px;
+
+  animation:
+    loadingFloat 1s ease-in-out infinite;
+}
+
+
+@keyframes loadingFloat {
+
+  0%,
+  100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-8px);
+  }
+
+}
+
+
+.orders-loading p {
+  margin: 0;
+
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 8px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   ERRO
+   ========================================= */
+
+.orders-error {
+  min-height: 280px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  text-align: center;
+
+  background:
+    #fff4f4;
+
+  border:
+    3px solid
+    var(--allpaca-danger);
+
+  box-sizing: border-box;
+}
+
+
+.orders-message-icon {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  color:
+    var(--allpaca-white);
+
+  background:
+    var(--allpaca-danger);
+
+  border:
+    3px solid
+    var(--allpaca-coal-dark);
+
+  box-shadow:
+    3px 3px 0
+    var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 24px;
+}
+
+
+.orders-error h2 {
+  margin: 0 0 10px;
+
+  color:
+    var(--allpaca-danger-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 11px;
+
+  line-height: 1.8;
+}
+
+
+.orders-error p {
+  margin: 0;
+
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 7px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   NENHUM PEDIDO
+   ========================================= */
+
+.orders-empty {
+  min-height: 350px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+
+.orders-empty-image {
+  width: 180px;
+  height: 180px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 10px;
+}
+
+
+.orders-empty-image img {
+  width: 175px;
+  height: 175px;
+
+  object-fit: contain;
+
+  image-rendering: pixelated;
+
+  filter:
+    drop-shadow(
+      5px 5px 0
+      var(--allpaca-coal-dark)
+    );
+}
+
+
+.orders-empty h2 {
+  margin: 0 0 12px;
+
+  color:
+    var(--allpaca-coal-dark);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 13px;
+
+  line-height: 1.8;
+
+  text-transform: uppercase;
+}
+
+
+.orders-empty p {
+  margin: 0;
+
+  color:
+    var(--allpaca-text-muted);
+
+  font-family:
+    var(--allpaca-font-pixel);
+
+  font-size: 7px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================
+   BASE
+   ========================================= */
+
+.building-bottom {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  height: 22px;
+
+  border-top:
+    4px solid
+    var(--allpaca-coal-dark);
+}
+
+
+.building-bottom span:nth-child(odd) {
+  background:
+    var(--allpaca-earth);
+}
+
+
+.building-bottom span:nth-child(even) {
+  background:
+    var(--allpaca-earth-dark);
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .orders-page {
+    padding:
+      30px 15px 50px;
+  }
+
+
+  .orders-body {
+    padding: 20px;
+  }
+
+
+  .orders-board {
+    padding: 20px;
+  }
+
+
+  .order-card-summary {
+    grid-template-columns:
+      52px
+      minmax(120px, 1fr)
+      100px
+      70px
+      120px
+      28px;
+
+    gap: 10px;
+
+    padding: 12px;
+  }
+
+
+  .order-summary-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+
+  .order-summary-icon img {
+    width: 34px;
+    height: 34px;
+  }
+
+
+  .order-item {
+    grid-template-columns:
+      65px
+      minmax(0, 1fr)
+      95px
+      115px;
+
+    gap: 10px;
+
+    padding: 10px;
+  }
+
+
+  .order-item-image {
+    width: 65px;
+    height: 65px;
+  }
+
+
+  .order-item-image img {
+    width: 54px;
+    height: 54px;
+  }
+
+}
+
+
+/* =========================================
+   CELULAR
+   ========================================= */
+
+@media (max-width: 700px) {
+
+  .orders-page {
+    padding:
+      25px 12px 40px;
+  }
+
+
+  .building-top {
+    min-height: 90px;
+
+    padding: 15px;
+  }
+
+
+  .building-title img {
+    width: 220px;
+  }
+
+
+  .orders-body {
+    padding: 14px;
+  }
+
+
+  .orders-board {
+    padding: 15px;
+  }
+
+
+  /* CABEÇALHO */
+
+  .orders-board-header {
+    gap: 10px;
+
+    padding-bottom: 16px;
+
+    margin-bottom: 16px;
+  }
+
+
+  .orders-header-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+
+  .orders-header-icon img {
+    width: 34px;
+    height: 34px;
+  }
+
+
+  .orders-board-header h1 {
+    font-size: 14px;
+  }
+
+
+  .orders-board-header p {
+    font-size: 6px;
+  }
+
+
+  .orders-label {
+    font-size: 7px;
+  }
+
+
+  /* PEDIDO */
+
+  .order-card-summary {
+    grid-template-columns:
+      48px
+      minmax(0, 1fr)
+      28px;
+
+    gap: 10px;
+
+    min-height: 74px;
+
+    padding: 10px;
+  }
+
+
+  .order-summary-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+
+  .order-summary-icon img {
+    width: 30px;
+    height: 30px;
+  }
+
+
+  .order-summary-main {
+    gap: 4px;
+  }
+
+
+  .order-summary-label {
+    font-size: 6px;
+  }
+
+
+  .order-summary-id {
+    font-size: 10px;
+  }
+
+
+  /* ESCONDE DADOS SECUNDÁRIOS NO RESUMO */
+
+  .order-summary-date,
+  .order-summary-products,
+  .order-summary-total {
+    display: none;
+  }
+
+
+  .order-summary-arrow {
+    width: 26px;
+    height: 26px;
+  }
+
+
+  /* CONTEÚDO */
+
+  .order-card-content {
+    padding: 12px;
+  }
+
+
+  .order-content-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+
+  .order-content-header h2 {
+    font-size: 8px;
+  }
+
+
+  .order-content-total {
+    align-items: flex-start;
+  }
+
+
+  .order-content-total strong {
+    font-size: 10px;
+  }
+
+
+  /* PRODUTO */
+
+  .order-item {
+    grid-template-columns:
+      58px
+      minmax(0, 1fr);
+
+    gap: 10px;
+
+    padding: 10px;
+  }
+
+
+  .order-item-image {
+    width: 58px;
+    height: 58px;
+  }
+
+
+  .order-item-image img {
+    width: 48px;
+    height: 48px;
+  }
+
+
+  .order-item-info h3 {
+    font-size: 8px;
+  }
+
+
+  .order-item-info p {
+    font-size: 6px;
+  }
+
+
+  /* PARCELAMENTO */
+
+  .order-item-installment {
+    grid-column: 1 / 2;
+
+    min-height: 48px;
+  }
+
+
+  /* PREÇO */
+
+  .order-item-price {
+    grid-column: 2;
+
+    grid-row: 2;
+
+    align-items: flex-end;
+  }
+
+
+  .order-item-price strong {
+    font-size: 8px;
+  }
+
+
+  /* RODAPÉ */
+
+  .order-card-footer {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 12px;
+  }
+
+
+  .order-footer-total {
+    align-items: flex-start;
+  }
+
+
+  .order-footer-total strong {
+    font-size: 12px;
+  }
+
+
+  /* VAZIO */
+
+  .orders-empty {
+    min-height: 300px;
+
+    padding: 20px 10px;
+  }
+
+
+  .orders-empty-image {
+    width: 140px;
+    height: 140px;
+  }
+
+
+  .orders-empty-image img {
+    width: 135px;
+    height: 135px;
+  }
+
+
+  .orders-empty h2 {
+    font-size: 10px;
+  }
+
+
+  .orders-empty p {
+    font-size: 6px;
+  }
+
+}
+
+
+/* =========================================
+   CELULARES PEQUENOS
+   ========================================= */
+
+@media (max-width: 400px) {
+
+  .orders-body {
+    padding: 10px;
+  }
+
+
+  .orders-board {
+    padding: 12px;
+  }
+
+
+  .building-title img {
+    width: 190px;
+  }
+
+
+  .orders-board-header h1 {
+    font-size: 12px;
+  }
+
+
+  .order-card-summary {
+    grid-template-columns:
+      42px
+      minmax(0, 1fr)
+      25px;
+
+    gap: 8px;
+
+    padding: 8px;
+  }
+
+
+  .order-summary-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+
+  .order-summary-icon img {
+    width: 27px;
+    height: 27px;
+  }
+
+
+  .order-summary-id {
+    font-size: 9px;
+  }
+
+
+  .order-summary-arrow {
+    width: 23px;
+    height: 23px;
+  }
+
+
+  .order-item {
+    grid-template-columns:
+      52px
+      minmax(0, 1fr);
+
+    gap: 8px;
+
+    padding: 8px;
+  }
+
+
+  .order-item-image {
+    width: 52px;
+    height: 52px;
+  }
+
+
+  .order-item-image img {
+    width: 43px;
+    height: 43px;
+  }
+
+
+  .order-item-info h3 {
+    font-size: 7px;
+  }
+
+
+  .order-item-installment {
+    padding: 6px;
+  }
+
+
+  .order-footer-total strong {
+    font-size: 10px;
+  }
+
+}

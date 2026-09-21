@@ -1,25 +1,124 @@
-.search-form{
-    height: 44px;
+/* =========================================================
+   FORMULÁRIO DE PESQUISA
+   ========================================================= */
+
+.search-form {
+    width: 100%;
+    height: 42px;
+
     display: flex;
-}
+    align-items: stretch;
 
-.search-form input{
     box-sizing: border-box;
-    height: 56px;
-    padding: 28px;
-    flex:1;
-    background-color: var(--light-gray);
-    color: var(--gray);
-    border: none;
-    transition: all -3s ease-in-out;
-    font-size: 22px;
 }
 
-.search-form button{
-    width: 56px;
-    height: 56px;
-    background-color: var(--blue);
-    border:none;
-    color: #fff;
-    font-size: 22px;
+
+/* =========================================================
+   CAMPO DE TEXTO
+   ========================================================= */
+
+.search-form input {
+    box-sizing: border-box;
+
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+
+    padding: 0 12px;
+
+    flex: 1;
+
+    background-color: var(--allpaca-snow);
+
+    color: var(--allpaca-coal-dark);
+
+    border: 2px solid var(--allpaca-stone-dark);
+    border-right: none;
+
+    outline: none;
+
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        border-color 0.15s ease-in-out;
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+   ========================================================= */
+
+.search-form input::placeholder {
+    color: var(--allpaca-text-muted);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   CAMPO EM FOCO
+   ========================================================= */
+
+.search-form input:focus {
+    border-color: var(--allpaca-gold);
+}
+
+
+/* =========================================================
+   BOTÃO DE PESQUISA
+   ========================================================= */
+
+.search-form button {
+    width: 42px;
+    min-width: 42px;
+
+    height: 42px;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--allpaca-gold);
+
+    border: 2px solid var(--allpaca-coal-dark);
+
+    color: var(--allpaca-coal-dark);
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease-in-out,
+        transform 0.1s ease-in-out;
+}
+
+
+/* =========================================================
+   HOVER DO BOTÃO
+   ========================================================= */
+
+.search-form button:hover {
+    background-color: var(--allpaca-gold-light);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   CLIQUE DO BOTÃO
+   ========================================================= */
+
+.search-form button:active {
+    transform: translateY(1px);
 }

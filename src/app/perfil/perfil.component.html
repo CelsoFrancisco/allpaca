@@ -1,0 +1,609 @@
+<section class="perfil-page">
+
+
+<div class="perfil-container">
+
+    <!-- =========================================
+         CABEÇALHO
+         ========================================= -->
+
+    <header class="perfil-header">
+
+        <div class="perfil-header-decoration decoration-left">
+            <span></span>
+            <span></span>
+        </div>
+
+        <img
+            src="assets/allpaca/allpaca-logo.png"
+            alt="ALLpaca"
+            class="perfil-logo"
+        >
+
+        <div class="perfil-header-decoration decoration-right">
+            <span></span>
+            <span></span>
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         CONTEÚDO PRINCIPAL
+         ========================================= -->
+
+    <div class="perfil-content-layout">
+
+        <!-- =====================================
+             CARTÃO DO PERSONAGEM
+             ===================================== -->
+
+        <aside class="character-card">
+
+            <div class="character-card-title">
+                <span>PERFIL</span>
+                <span class="character-status">● ONLINE</span>
+            </div>
+
+            <div class="character-frame">
+
+                <div class="character-frame-inner">
+
+                    <img
+                        src="assets/allpaca/moods/alpaca-normal.png"
+                        alt="Mascote ALLpaca"
+                        class="character-image"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="character-name">
+                {{ perfil?.nome || 'JOGADOR' }}
+            </div>
+
+            <div class="character-description">
+                Conta do jogador
+            </div>
+
+            <div class="character-divider"></div>
+
+            <div class="character-info">
+
+                <div class="character-info-row">
+                    <span>NÍVEL</span>
+                    <strong>ALLPACA</strong>
+                </div>
+
+                <div class="character-info-row">
+                    <span>STATUS</span>
+                    <strong class="status-online">ONLINE</strong>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================
+             PAINEL PRINCIPAL
+             ===================================== -->
+
+        <main class="perfil-panel">
+
+            <!-- CABEÇALHO DO PAINEL -->
+
+            <header class="panel-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        CONTA DO JOGADOR
+                    </span>
+
+                    <h1>
+                        Meu perfil
+                    </h1>
+
+                    <p>
+                        Gerencie as informações da sua conta ALLpaca.
+                    </p>
+
+                </div>
+
+                <div class="panel-icon">
+                    <img
+                        src="assets/allpaca/icons/profile.png"
+                        alt=""
+                    >
+                </div>
+
+            </header>
+
+
+            <!-- =================================
+                 CARREGANDO
+                 ================================= -->
+
+            <div
+                *ngIf="carregando"
+                class="perfil-loading"
+            >
+
+                <div class="loading-box">
+
+                    <img
+                        src="assets/allpaca/moods/alpaca-carregando-caixa.png"
+                        alt="Carregando"
+                    >
+
+                </div>
+
+                <p>
+                    Carregando informações...
+                </p>
+
+            </div>
+
+
+            <!-- =================================
+                 CONTEÚDO
+                 ================================= -->
+
+            <div
+                *ngIf="!carregando && perfil"
+                class="perfil-sections"
+            >
+
+                <!-- =================================
+                     DADOS PESSOAIS
+                     ================================= -->
+
+                <section class="profile-section">
+
+                    <div class="section-heading">
+
+                        <div class="section-heading-icon">
+                            ✎
+                        </div>
+
+                        <div>
+                            <span>DADOS DO JOGADOR</span>
+                            <h2>Informações pessoais</h2>
+                        </div>
+
+                    </div>
+
+
+                    <!-- VISUALIZAÇÃO -->
+
+                    <div
+                        *ngIf="!editando"
+                        class="profile-view"
+                    >
+
+                        <div class="profile-fields">
+
+                            <div class="profile-field">
+
+                                <span class="field-label">
+                                    NOME
+                                </span>
+
+                                <strong class="field-value">
+                                    {{ perfil.nome }}
+                                </strong>
+
+                            </div>
+
+                            <div class="profile-field">
+
+                                <span class="field-label">
+                                    SOBRENOME
+                                </span>
+
+                                <strong class="field-value">
+                                    {{ perfil.sobrenome }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="pixel-button button-green"
+                            (click)="iniciarEdicao()"
+                        >
+                            <span>✎</span>
+                            <span>Editar nome e sobrenome</span>
+                        </button>
+
+                    </div>
+
+
+                    <!-- EDIÇÃO -->
+
+                    <div
+                        *ngIf="editando"
+                        class="profile-edit-form"
+                    >
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="nome">
+                                    Nome
+                                </label>
+
+                                <input
+                                    id="nome"
+                                    type="text"
+                                    [(ngModel)]="nomeEditado"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="sobrenome">
+                                    Sobrenome
+                                </label>
+
+                                <input
+                                    id="sobrenome"
+                                    type="text"
+                                    [(ngModel)]="sobrenomeEditado"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-buttons">
+
+                            <button
+                                type="button"
+                                class="pixel-button button-gray"
+                                (click)="cancelarEdicao()"
+                                [disabled]="salvando"
+                            >
+                                Cancelar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="pixel-button button-green"
+                                (click)="salvarAlteracoes()"
+                                [disabled]="salvando"
+                            >
+
+                                <span *ngIf="!salvando">
+                                    Salvar alterações
+                                </span>
+
+                                <span *ngIf="salvando">
+                                    Salvando...
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================
+                     CONTA
+                     ================================= -->
+
+                <section class="profile-section">
+
+                    <div class="section-heading">
+
+                        <div class="section-heading-icon">
+                            @
+                        </div>
+
+                        <div>
+                            <span>SEGURANÇA</span>
+                            <h2>Conta</h2>
+                        </div>
+
+                    </div>
+
+
+                    <!-- VISUALIZAÇÃO DA CONTA -->
+
+                    <div
+                        *ngIf="!editandoEmail && !editandoSenha"
+                        class="account-view"
+                    >
+
+                        <div class="email-card">
+
+                            <div class="email-card-icon">
+                                @
+                            </div>
+
+                            <div class="email-card-info">
+
+                                <span class="field-label">
+                                    E-MAIL DA CONTA
+                                </span>
+
+                                <strong>
+                                    {{ perfil.email }}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="account-actions">
+
+                            <button
+                                type="button"
+                                class="pixel-button button-gold"
+                                (click)="iniciarEdicaoEmail()"
+                            >
+                                <span>@</span>
+                                <span>Alterar e-mail</span>
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="pixel-button button-dark"
+                                (click)="iniciarEdicaoSenha()"
+                            >
+                                <span>🔒</span>
+                                <span>Alterar senha</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         FORMULÁRIO E-MAIL
+                         ================================= -->
+
+                    <div
+                        *ngIf="editandoEmail"
+                        class="account-edit-form"
+                    >
+
+                        <div class="edit-form-title">
+                            <span>ALTERAÇÃO DE E-MAIL</span>
+                            <strong>Atualizar endereço da conta</strong>
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="novoEmail">
+                                Novo e-mail
+                            </label>
+
+                            <input
+                                id="novoEmail"
+                                type="email"
+                                [(ngModel)]="novoEmail"
+                                placeholder="Digite o novo e-mail"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="senhaAtualEmail">
+                                Senha atual
+                            </label>
+
+                            <input
+                                id="senhaAtualEmail"
+                                type="password"
+                                [(ngModel)]="senhaAtual"
+                                placeholder="Digite sua senha atual"
+                            >
+
+                        </div>
+
+
+                        <div class="form-buttons">
+
+                            <button
+                                type="button"
+                                class="pixel-button button-gray"
+                                (click)="cancelarEdicaoEmail()"
+                                [disabled]="salvandoEmail"
+                            >
+                                Cancelar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="pixel-button button-green"
+                                (click)="salvarEmail()"
+                                [disabled]="salvandoEmail"
+                            >
+
+                                <span *ngIf="!salvandoEmail">
+                                    Salvar novo e-mail
+                                </span>
+
+                                <span *ngIf="salvandoEmail">
+                                    Salvando...
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         FORMULÁRIO SENHA
+                         ================================= -->
+
+                    <div
+                        *ngIf="editandoSenha"
+                        class="account-edit-form"
+                    >
+
+                        <div class="edit-form-title">
+
+                            <span>SEGURANÇA DA CONTA</span>
+
+                            <strong>
+                                Alterar senha
+                            </strong>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="senhaAtualSenha">
+                                Senha atual
+                            </label>
+
+                            <input
+                                id="senhaAtualSenha"
+                                type="password"
+                                [(ngModel)]="senhaAtual"
+                                placeholder="Digite sua senha atual"
+                            >
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="novaSenha">
+                                    Nova senha
+                                </label>
+
+                                <input
+                                    id="novaSenha"
+                                    type="password"
+                                    [(ngModel)]="novaSenha"
+                                    placeholder="Digite sua nova senha"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="confirmarNovaSenha">
+                                    Confirmar nova senha
+                                </label>
+
+                                <input
+                                    id="confirmarNovaSenha"
+                                    type="password"
+                                    [(ngModel)]="confirmarNovaSenha"
+                                    placeholder="Digite novamente sua nova senha"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-buttons">
+
+                            <button
+                                type="button"
+                                class="pixel-button button-gray"
+                                (click)="cancelarEdicaoSenha()"
+                                [disabled]="salvandoSenha"
+                            >
+                                Cancelar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="pixel-button button-green"
+                                (click)="salvarSenha()"
+                                [disabled]="salvandoSenha"
+                            >
+
+                                <span *ngIf="!salvandoSenha">
+                                    Alterar senha
+                                </span>
+
+                                <span *ngIf="salvandoSenha">
+                                    Alterando...
+                                </span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- =================================
+                 VOLTAR
+                 ================================= -->
+
+            <button
+                *ngIf="
+                    !editando &&
+                    !editandoEmail &&
+                    !editandoSenha
+                "
+                type="button"
+                class="back-button"
+                routerLink="/produtos"
+            >
+
+                <span>←</span>
+                <span>Voltar para produtos</span>
+
+            </button>
+
+        </main>
+
+    </div>
+
+
+    <!-- =========================================
+         RODAPÉ PIXEL
+         ========================================= -->
+
+    <footer class="perfil-footer">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </footer>
+
+</div>
+
+
+</section>

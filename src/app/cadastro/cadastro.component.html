@@ -1,0 +1,195 @@
+<section class="cadastro-page">
+
+  <div class="cadastro-building">
+
+    <div class="building-top">
+
+      <div class="building-leaf leaf-left"></div>
+
+      <div class="building-title">
+        <img
+          src="assets/allpaca/allpaca-logo.png"
+          alt="ALLpaca"
+        >
+      </div>
+
+      <div class="building-leaf leaf-right"></div>
+
+    </div>
+
+    <div class="building-body">
+
+      <div class="cadastro-mascote">
+        <img
+          src="assets/allpaca/moods/alpaca-feliz.png"
+          alt="Alpaca feliz"
+        >
+      </div>
+
+      <div class="cadastro-board">
+
+        <div class="cadastro-board-header">
+          <h1>Criar conta</h1>
+          <p>Entre para a ALLpaca!</p>
+        </div>
+
+        <div class="form-group">
+          <label for="nome">Nome</label>
+
+          <input
+            id="nome"
+            type="text"
+            [(ngModel)]="nome"
+            placeholder="Digite seu nome"
+            autocomplete="given-name"
+            required
+            [class.campo-invalido]="
+              formularioEnviado &&
+              (!nome.trim() || !nomeValido(nome))
+            "
+            [class.campo-valido]="nomeValido(nome)"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="sobrenome">Sobrenome</label>
+
+          <input
+            id="sobrenome"
+            type="text"
+            [(ngModel)]="sobrenome"
+            placeholder="Digite seu sobrenome"
+            autocomplete="family-name"
+            required
+            [class.campo-invalido]="
+              formularioEnviado &&
+              (!sobrenome.trim() ||
+              !nomeValido(sobrenome))
+            "
+            [class.campo-valido]="nomeValido(sobrenome)"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+
+          <input
+            id="email"
+            type="email"
+            [(ngModel)]="email"
+            placeholder="Digite seu e-mail"
+            autocomplete="email"
+            required
+            [class.campo-invalido]="
+              formularioEnviado &&
+              (!email.trim() || !emailValido())
+            "
+            [class.campo-valido]="emailValido()"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha</label>
+
+          <input
+            id="senha"
+            type="password"
+            [(ngModel)]="senha"
+            placeholder="Digite sua senha"
+            autocomplete="new-password"
+            minlength="8"
+            required
+            [class.campo-invalido]="
+              formularioEnviado &&
+              senha.length < 8
+            "
+            [class.campo-valido]="senha.length >= 8"
+          >
+
+          <small class="campo-ajuda">
+            Mínimo de 8 caracteres.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmarSenha">Confirmar senha</label>
+
+          <input
+            id="confirmarSenha"
+            type="password"
+            [(ngModel)]="confirmarSenha"
+            placeholder="Digite a senha novamente"
+            autocomplete="new-password"
+            minlength="8"
+            required
+            [class.campo-invalido]="
+              formularioEnviado &&
+              (!confirmarSenha ||
+              senha !== confirmarSenha)
+            "
+            [class.campo-valido]="
+              confirmarSenha.length >= 8 &&
+              senha === confirmarSenha
+            "
+          >
+        </div>
+
+        <div
+          *ngIf="mensagemErro"
+          class="mensagem mensagem-erro"
+        >
+          <span class="mensagem-icone">!</span>
+
+          <span>
+            {{ mensagemErro }}
+          </span>
+        </div>
+
+        <div
+          *ngIf="mensagemSucesso"
+          class="mensagem mensagem-sucesso"
+        >
+          <span class="mensagem-icone">✓</span>
+
+          <span>
+            {{ mensagemSucesso }}
+          </span>
+        </div>
+
+        <button
+          type="button"
+          class="cadastro-button"
+          (click)="cadastrar()"
+          [disabled]="carregando"
+        >
+          <span *ngIf="!carregando">
+            Criar conta
+          </span>
+
+          <span *ngIf="carregando">
+            Criando conta...
+          </span>
+        </button>
+
+        <div class="cadastro-board-footer">
+          <span>Já possui uma conta?</span>
+
+          <a routerLink="/login">
+            Fazer login
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="building-bottom">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+
+</section>

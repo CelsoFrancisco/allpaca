@@ -1,20 +1,328 @@
-<section class="product__container">
-    <div class="product-image__container">
-        <img [src]="produto?.imagem" alt="">
-    </div>
-    <div class="product-description__container">
-            <h2 class="product__name">{{produto?.descricao}}</h2>
-            <h3 class="product__price">{{produto?.preco | currency:"BRL"}}</h3>
-            <p>Estoque disponivel:</p>
-            <label>
-                Quantidade:
-                <input type="number" [(ngModel)]="quantidade" min="1">
-                unidade(s)
-            </label>
-            <p class="product__avaibility">
-                {{produto?.quantidadeEstoque}} unidade(s) em estoque.
-            </p>
-            <button (click)="adicionarAoCarrinho()" >Adicionar ao carrinho</button>
-        
-    </div>
+<section class="product-detail-page">
+
+  <main class="product-detail">
+
+    <!-- VOLTAR -->
+    <a routerLink="/produtos" class="back-button">
+      ← Voltar para produtos
+    </a>
+
+    <section class="product-showcase">
+
+      <!-- =========================
+           LADO ESQUERDO
+      ========================== -->
+      <div class="product-visual">
+
+        <div class="item-platform">
+
+          <div class="item-glow"></div>
+
+          <img
+            [src]="produto?.imagem"
+            [alt]="produto?.descricao"
+            class="product-image"
+          >
+
+        </div>
+
+        <!-- ALLPACA -->
+        <div class="miner-alpaca">
+
+          <img
+            src="assets/allpaca/moods/alpaca-minerando.png"
+            alt="ALLpaca minerando"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           LADO DIREITO
+      ========================== -->
+      <div class="product-info">
+
+        <!-- TAG -->
+        <div class="product-tag">
+          ITEM DA ALLPACA
+        </div>
+
+
+        <!-- NOME -->
+        <h1 class="product-name">
+          {{ produto?.descricao }}
+        </h1>
+
+
+        <!-- DESCRIÇÃO -->
+        <div class="product-description">
+
+          <span class="description-label">
+            SOBRE O PRODUTO
+          </span>
+
+          <p>
+            {{ produto?.descricaoDetalhada }}
+          </p>
+
+        </div>
+
+
+        <!-- PREÇO -->
+        <div class="price-box">
+
+          <div class="price-main">
+
+            <span class="price-label">
+              PREÇO
+            </span>
+
+            <strong class="product-price">
+              {{ produto?.preco | currency:"BRL" }}
+            </strong>
+
+          </div>
+
+
+          <div class="installment-highlight">
+
+            <span>
+              OU EM ATÉ 12X
+            </span>
+
+            <strong>
+              {{ valorParcela(12) | currency:"BRL" }}
+            </strong>
+
+            <small>
+              sem juros
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <!-- PARCELAMENTO -->
+        <div class="installment-box">
+
+          <div class="installment-header">
+
+            <div>
+
+              <span class="installment-label">
+                FORMAS DE PAGAMENTO
+              </span>
+
+              <strong>
+                Escolha o número de parcelas
+              </strong>
+
+            </div>
+
+            <span class="installment-icon">
+              $
+            </span>
+
+          </div>
+
+
+          <div class="installment-options">
+
+            <button
+              type="button"
+              *ngFor="let parcelas of opcoesParcelamento"
+              class="installment-option"
+              [class.selected]="parcelasSelecionadas === parcelas"
+              (click)="selecionarParcelas(parcelas)"
+            >
+
+              <strong>
+                {{ parcelas }}x
+              </strong>
+
+              <span>
+                {{ valorParcela(parcelas) | currency:"BRL" }}
+              </span>
+
+            </button>
+
+          </div>
+
+
+          <div class="installment-result">
+
+            <span>
+              Você paga
+            </span>
+
+            <strong>
+              {{ parcelasSelecionadas }}x
+              {{ valorParcela(parcelasSelecionadas) | currency:"BRL" }}
+            </strong>
+
+            <span>
+              por mês sem juros
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ESTOQUE -->
+        <div class="stock-box">
+
+          <div class="stock-header">
+
+            <span>
+              ESTOQUE
+            </span>
+
+            <strong>
+              {{ produto?.quantidadeEstoque }}
+            </strong>
+
+          </div>
+
+
+          <div class="stock-bar">
+
+            <div
+              class="stock-bar-fill"
+              [style.width.%]="percentualEstoque"
+            ></div>
+
+          </div>
+
+
+          <p>
+            {{ produto?.quantidadeEstoque }}
+            unidade(s) disponível(is).
+          </p>
+
+        </div>
+
+
+        <!-- QUANTIDADE -->
+        <div class="quantity-section">
+
+          <span class="quantity-title">
+            QUANTIDADE
+          </span>
+
+
+          <div class="quantity-control">
+
+            <button
+              type="button"
+              class="quantity-button"
+              (click)="diminuirQuantidade()"
+            >
+              −
+            </button>
+
+
+            <input
+              type="number"
+              [(ngModel)]="quantidade"
+              (change)="alterarQuantidade()"
+              min="1"
+              [max]="produto?.quantidadeEstoque ?? 0"
+            >
+
+
+            <button
+              type="button"
+              class="quantity-button"
+              (click)="aumentarQuantidade()"
+            >
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- BOTÃO -->
+        <div class="product-actions">
+
+          <button
+            type="button"
+            class="cart-button"
+            (click)="adicionarAoCarrinho()"
+            [disabled]="!produto || produto.quantidadeEstoque <= 0"
+          >
+
+            <img
+              src="assets/allpaca/icons/cart.png"
+              alt=""
+            >
+
+            <span>
+              Adicionar ao carrinho
+            </span>
+
+          </button>
+
+        </div>
+
+
+        <!-- INFORMAÇÕES -->
+        <div class="product-footer-info">
+
+          <div class="info-item">
+
+            <span class="info-icon">
+              ✓
+            </span>
+
+            <span>
+              Produto disponível
+            </span>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <span class="info-icon">
+              ◆
+            </span>
+
+            <span>
+              Compra segura
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- RODAPÉ DA VITRINE -->
+    <section class="product-bottom-panel">
+
+      <div>
+
+        <span class="bottom-label">
+          ALLpaca
+        </span>
+
+        <strong>
+          Seu estoque, suas escolhas.
+        </strong>
+
+      </div>
+
+    </section>
+
+  </main>
+
 </section>

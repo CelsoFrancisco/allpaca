@@ -1,48 +1,182 @@
-<header class="main-header">
-    <a href="http://localhost:4200/produtos" class="linkjuniorvendas">
-        <h1 class="main-header__title"><span class="main-header__title--blue" >Junior</span> <span class="main-header__title--orange">Vendas</span></h1>
-    </a>
-    <div class="container-menu">
-    <nav class="main-header__menu">
-        <ul>
-            <li>
-                 <a routerLink="/produtos">Produtos</a>
-            </li>
-            <li>
-                <a routerLink="/carrinho">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                    Carrinho
-                    <span class="badge-carrinho">{{carrinhoService.obtemCarrinho().length }}</span>
-                </a>
-            </li>
-            <li>
-                <a routerLink="contato">
-                    Contato
-                </a>
-            </li>
-            <li>
-                <a>
-                    <i class="fa-brands fa-square-facebook"></i>
-                </a>
-            </li>
-            <li>
-                <a>
-                    <i class="fa-brands fa-square-instagram"></i>
-                </a>
-            </li>
-            <li>
-                <a>
-                   <i class="fa-brands fa-square-x-twitter"></i>
-                </a>
-            </li>
-            <li>
-                <a>
-                   <i class="fa-brands fa-square-linkedin"></i>
-                </a>
-            </li>
-        </ul>
-        
-    </nav>
-   <app-barra-pesquisa></app-barra-pesquisa>
-</div>
+<header
+  class="main-header"
+  [class.header-hidden]="headerEscondido"
+>
+
+  <section class="allpaca-hero">
+
+    <div class="hero-background"></div>
+
+    <div class="hero-alpaca-container">
+
+      <!-- ALPACA NORMAL -->
+      <img
+        src="assets/allpaca/moods/alpaca-normal.png"
+        alt="Mascote ALLpaca"
+        class="hero-alpaca hero-alpaca-normal"
+      >
+
+      <!-- ALPACA FELIZ -->
+      <img
+        src="assets/allpaca/moods/alpaca-feliz.png"
+        alt="Mascote ALLpaca feliz"
+        class="hero-alpaca hero-alpaca-feliz"
+      >
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       NAVEGAÇÃO
+       ===================================================== -->
+
+  <nav class="header-navigation">
+
+    <div class="navigation-content">
+
+      <!-- =================================================
+           PARTE PRINCIPAL
+           ================================================= -->
+
+      <div class="navigation-main">
+
+        <!-- PRODUTOS -->
+        <a
+          routerLink="/produtos"
+          class="navigation-item"
+        >
+
+          <img
+            src="assets/allpaca/icons/products.png"
+            alt=""
+            class="navigation-icon"
+          >
+
+          <span>Produtos</span>
+
+        </a>
+
+
+        <!-- PEDIDOS -->
+        <a
+          routerLink="/pedidos"
+          class="navigation-item"
+        >
+
+          <img
+            src="assets/allpaca/icons/orders.png"
+            alt=""
+            class="navigation-icon"
+          >
+
+          <span>Meus pedidos</span>
+
+        </a>
+
+
+        <!-- PESQUISA -->
+        <div class="navigation-search">
+
+          <app-barra-pesquisa></app-barra-pesquisa>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           CONTA
+           ================================================= -->
+
+      <div class="navigation-account">
+
+        <!-- PERFIL -->
+        <a
+          routerLink="/perfil"
+          class="navigation-item user-info"
+        >
+
+          <img
+            src="assets/allpaca/icons/profile.png"
+            alt="Perfil"
+            class="navigation-icon"
+          >
+
+          <span>{{ nomeUsuario }}</span>
+
+        </a>
+
+
+        <!-- CARRINHO -->
+        <a
+          routerLink="/carrinho"
+          class="navigation-item cart-navigation"
+        >
+
+          <div class="cart-icon-container">
+
+            <img
+              src="assets/allpaca/icons/cart.png"
+              alt="Carrinho"
+              class="navigation-icon"
+            >
+
+            <span
+              class="cart-badge"
+              *ngIf="quantidadeCarrinho > 0"
+            >
+              {{ quantidadeCarrinho }}
+            </span>
+
+          </div>
+
+          <span>Carrinho</span>
+
+        </a>
+
+
+        <!-- LOGIN -->
+        <a
+          *ngIf="!estaLogado"
+          routerLink="/login"
+          class="navigation-item navigation-login"
+        >
+
+          <img
+            src="assets/allpaca/icons/login.png"
+            alt=""
+            class="navigation-icon"
+          >
+
+          <span>Entrar</span>
+
+        </a>
+
+
+        <!-- LOGOUT -->
+        <button
+          *ngIf="estaLogado"
+          type="button"
+          class="navigation-item navigation-logout"
+          (click)="sair()"
+        >
+
+          <img
+            src="assets/allpaca/icons/logout.png"
+            alt=""
+            class="navigation-icon"
+          >
+
+          <span>Sair</span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </nav>
+
 </header>
